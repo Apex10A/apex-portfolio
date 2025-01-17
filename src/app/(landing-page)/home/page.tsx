@@ -69,7 +69,7 @@ const Home: React.FC = () => {
   return (
     <div className="bg-gradient-to-b from-gray-900 to-black min-h-screen text-white overflow-x-hidden">
       {/* Hero Section */}
-      <div className="container mx-auto relative z-10 px-4 lg:px-8 pt-20 sm:pt-32 lg:pt-44">
+      <div className="container mx-auto relative z-10 px-4 lg:px-8 pt-32 sm:pt-36 lg:pt-44">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
           <div className="text-center lg:text-left lg:w-1/2 space-y-6">
             <h1 className="text-3xl sm:text-4xl lg:text-7xl font-extrabold leading-tight">

@@ -1,14 +1,16 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import './globals.css'
-import Navigation from '@/app/components/header/page' // adjust the import path as needed
+// src/app/layout.tsx
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
+import Navigation from '@/app/components/header/page';
+import { LoadingProvider } from '@/components/providers/loading-apinner';
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Praise Afolabi',
   description: 'Personal portfolio website',
-}
+};
 
 export default function RootLayout({
   children,
@@ -18,9 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navigation />
-        {children}
+        <LoadingProvider>
+          <Navigation />
+          {children}
+        </LoadingProvider>
       </body>
     </html>
-  )
+  );
 }

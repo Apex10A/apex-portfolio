@@ -1,13 +1,16 @@
-import React from 'react';
-import "@/app/index.css"
+// page.tsx or layout.tsx
+import { Suspense } from 'react'
+import dynamic from 'next/dynamic'
 
+const NavigationClient = dynamic(() => import('@/app/components/blog/page'), {
+  ssr: false,
+  loading: () => <div>Loading navigation...</div>
+})
 
-const Page = () => {
+export default function Layout() {
   return (
-    <div className="bg-gradient-to-b from-gray-900 to-black min-h-screen flex items-center justify-center text-white">
-      <h1 className="text-4xl md:text-6xl font-bold text-center">Coming Soon!</h1>
-    </div>
-  );
-};
-
-export default Page;
+    <Suspense fallback={<div>Loading...</div>}>
+      <NavigationClient />
+    </Suspense>
+  )
+}

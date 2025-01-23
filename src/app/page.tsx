@@ -1,6 +1,6 @@
 import React from 'react'
 import "@/app/index.css"
-import LandingPageOne from "@/app/(landing-page)/home/page"
+import LandingPageOne from "@/app/(landing-page)/page"
 
 const page = () => {
   return (

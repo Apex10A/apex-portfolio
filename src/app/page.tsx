@@ -1,11 +1,6 @@
-import React from 'react'
-import "@/app/index.css"
-import LandingPageOne from "@/app/components/page"
+import React from 'react';
+import Home from '@/app/(landing-page)/home/page'; // Assuming this is the correct path
 
-const page = () => {
-  return (
-    <div><LandingPageOne/></div>
-  )
+export default function Page() {
+  return <Home />;
 }
-
-export default page

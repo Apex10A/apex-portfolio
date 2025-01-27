@@ -1,6 +1,6 @@
-// app/page.tsx
-import { redirect } from 'next/navigation';
+import Home from '@/app/(landing-page)/home/page';
 
 export default function Page() {
-  redirect('/home');
+  console.log('Root page rendered');
+  return <Home />;
 }

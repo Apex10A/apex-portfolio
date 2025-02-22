@@ -51,6 +51,28 @@ const Works = () => {
       liveLink: "https://hng-react-app.web.app/",
       githubLink: "https://github.com/Apex10A/Movie-react-app-website",
     },
+    {
+      id: 5,
+      title: "ChatClaude",
+      description:
+        "A multilingual AI-powered web application that enables real-time language detection, translation across 35+ languages, and text summarization with an intuitive chat interface",
+      category: "app",
+      image: "/ChatClaude.png",
+      tech: ["Next.js", "TailwindCSS", "Typescript", "Translator API", "Summarizer API", "Framer motion"],
+      liveLink: "https://ai-powered-app-chi.vercel.app/",
+      githubLink: "https://github.com/Apex10A/hngx-stage3-AI-Powered-app",
+    },
+    {
+      id: 6,
+      title: "Ticz",
+      description:
+        "A ticket generator web application that helps generating tickets for users and enables uploading and preview of profile picture",
+      category: "app",
+      image: "/Ticz.png",
+      tech: ["React.js", "CSS", "Cloudinary", "React-confetti"],
+      liveLink: "https://hng-12-task-two.vercel.app/",
+      githubLink: "https://github.com/Apex10A/HNG-12-task-two",
+    },
   ];
 
   const filteredProjects = filter === 'all' 

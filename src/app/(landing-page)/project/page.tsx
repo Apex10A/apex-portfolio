@@ -82,20 +82,26 @@ const Works = () => {
       title: "ReconXi - Reconcile AI",
       description:
         "An AI-Powered Financial Reconciliation platform designed to compare financial records with bank statements. Offers a simple file upload interface, AI-based matching algorithms with manual overrides, and multiple export options to decrease manual interventions while increasing efficiency and accuracy.",
+      image: "/reconcileai.png", // Placeholder - you'll need to add this image
       category: "professional",
       tech: ["Next.js", "AI Matching Algorithms", "Financial Tech", "TypeScript", "Machine Learning"],
-      year: "2025",
+      year: "Jan - April 2025",
       role: "Lead Frontend Developer",
+      liveLink: "https://reconxi.vercel.app/", // Placeholder link
+      githubLink: "https://github.com/Apex10A/ReconXi",
     },
     {
       id: 8,
       title: "HomeworkAI",
       description:
         "Collaborative project developed during HNG Internship, focusing on creating innovative solutions in the education technology space.",
+      image: "/homeworkai.png", // Placeholder - you'll need to add this image
       category: "professional",
       tech: ["React", "AI Integration", "Education Technology"],
-      year: "2024",
+      year: "July - August 2024",
       role: "Frontend Developer",
+      liveLink: "https://homeworkai.vercel.app/", // Placeholder link
+      githubLink: "https://github.com/Apex10A/HomeworkAI",
     }
   ];
 
@@ -190,14 +196,38 @@ const Works = () => {
         </div>
       </div>
 
-      {/* Professional Projects Section */}
       <div className="container mx-auto px-4 lg:px-8 pb-20">
         <h2 className="text-3xl font-bold text-center mb-8">
           Professional <span className="text-yellow-400">Experience</span>
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {professionalProjects.map((project) => (
-            <div key={project.id} className="bg-gray-800 rounded-lg overflow-hidden transform hover:scale-105 transition-all duration-300">
+            <div key={project.id} className="bg-gray-800 rounded-lg overflow-hidden group hover:transform hover:scale-105 transition-all duration-300">
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src={project.image} 
+                  alt={project.title}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4">
+                  <a 
+                    href={project.liveLink}
+                    className="px-4 py-2 bg-yellow-400 text-black rounded hover:bg-yellow-500 transition-colors duration-300"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Live Demo
+                  </a>
+                  <a 
+                    href={project.githubLink}
+                    className="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-600 transition-colors duration-300"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    GitHub
+                  </a>
+                </div>
+              </div>
               <div className="p-6">
                 <div className="flex justify-between items-center mb-4">
                   <h3 className="text-xl font-bold">{project.title}</h3>

@@ -24,7 +24,8 @@ const NAV_ITEMS: NavItem[] = [
   { path: '/about', label: 'About' },
   { path: '/project', label: 'Works' },
   { path: '/blog', label: 'Blog' },
-  { path: '/contact', label: 'Contact' }
+  { path: '/contact', label: 'Contact' },
+  { path: '/contributions', label: 'Contribution' }
 ];
 
 // NavLink Component

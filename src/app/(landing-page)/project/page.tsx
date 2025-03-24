@@ -75,6 +75,30 @@ const Works = () => {
     },
   ];
 
+  // Professional Experience Projects
+  const professionalProjects = [
+    {
+      id: 7,
+      title: "ReconXi - Reconcile AI",
+      description:
+        "An AI-Powered Financial Reconciliation platform designed to compare financial records with bank statements. Offers a simple file upload interface, AI-based matching algorithms with manual overrides, and multiple export options to decrease manual interventions while increasing efficiency and accuracy.",
+      category: "professional",
+      tech: ["Next.js", "AI Matching Algorithms", "Financial Tech", "TypeScript", "Machine Learning"],
+      year: "2025",
+      role: "Lead Frontend Developer",
+    },
+    {
+      id: 8,
+      title: "HomeworkAI",
+      description:
+        "Collaborative project developed during HNG Internship, focusing on creating innovative solutions in the education technology space.",
+      category: "professional",
+      tech: ["React", "AI Integration", "Education Technology"],
+      year: "2024",
+      role: "Frontend Developer",
+    }
+  ];
+
   const filteredProjects = filter === 'all' 
     ? projects 
     : projects.filter(project => project.category === filter);
@@ -114,8 +138,11 @@ const Works = () => {
         </button>
       </div>
 
-      {/* Projects Grid */}
-      <div className="container mx-auto px-4 lg:px-8 pb-20">
+      {/* Personal Projects Section */}
+      <div className="container mx-auto px-4 lg:px-8 pb-12">
+        <h2 className="text-3xl font-bold text-center mb-8">
+          Personal <span className="text-yellow-400">Projects</span>
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project) => (
             <div key={project.id} className="bg-gray-800 rounded-lg overflow-hidden group hover:transform hover:scale-105 transition-all duration-300">
@@ -162,8 +189,43 @@ const Works = () => {
           ))}
         </div>
       </div>
+
+      {/* Professional Projects Section */}
+      <div className="container mx-auto px-4 lg:px-8 pb-20">
+        <h2 className="text-3xl font-bold text-center mb-8">
+          Professional <span className="text-yellow-400">Experience</span>
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {professionalProjects.map((project) => (
+            <div key={project.id} className="bg-gray-800 rounded-lg overflow-hidden transform hover:scale-105 transition-all duration-300">
+              <div className="p-6">
+                <div className="flex justify-between items-center mb-4">
+                  <h3 className="text-xl font-bold">{project.title}</h3>
+                  <span className="text-sm text-yellow-400 bg-gray-700 px-2 py-1 rounded-full">
+                    {project.year}
+                  </span>
+                </div>
+                <p className="text-gray-300 mb-4">{project.description}</p>
+                <div className="mb-4">
+                  <span className="text-sm text-gray-400">Role: {project.role}</span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {project.tech.map((tech, index) => (
+                    <span 
+                      key={index}
+                      className="px-3 py-1 bg-gray-700 rounded-full text-sm"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
-        </Suspense>
+    </Suspense>
   );
 };
 

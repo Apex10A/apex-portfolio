@@ -5,6 +5,7 @@ import { Suspense } from 'react'
 
 const Works = () => {
   const [filter, setFilter] = useState('all');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const projects = [
     {
@@ -109,52 +110,93 @@ const Works = () => {
     <Suspense fallback={<div>Loading...</div>}>
     <div className="bg-gradient-to-b from-gray-900 to-black min-h-screen text-white">
       {/* Header */}
-      <div className="container mx-auto px-4 lg:px-8 pt-16 lg:pt-24">
-        <h1 className="text-4xl lg:text-6xl font-bold text-center mb-4">
+      <div className="container mx-auto px-4 lg:px-8 pt-20 lg:pt-24">
+        <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-center mb-4">
           My <span className="text-yellow-400">Works</span>
         </h1>
-        <p className="text-gray-300 text-center max-w-2xl mx-auto mb-12">
+        <p className="text-sm sm:text-base text-gray-300 text-center max-w-2xl mx-auto mb-12 px-4">
           Explore my latest projects and see how I bring ideas to life through code and creativity.
         </p>
       </div>
 
-      {/* Filter Buttons */}
-      <div className="flex justify-center gap-4 mb-12">
+      {/* Mobile Filter Toggle */}
+      {/* <div className="md:hidden flex justify-center mb-6">
         <button 
-          onClick={() => setFilter('all')}
-          className={`px-6 py-2 rounded-full ${filter === 'all' ? 'bg-yellow-400 text-black' : 'border border-yellow-400 text-yellow-400'}`}
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="px-6 py-2 bg-yellow-400 text-black rounded-full flex items-center"
+        >
+          {mobileMenuOpen ? 'Close Filters' : 'Open Filters'}
+        </button>
+      </div> */}
+
+      {/* Filter Buttons */}
+      {/* <div className={`
+        ${mobileMenuOpen ? 'block' : 'hidden'} md:block
+        flex flex-col mx-auto md:flex-row justify-center gap-2 md:gap-4 mb-12 px-4
+      `}>
+        <button 
+          onClick={() => {
+            setFilter('all');
+            setMobileMenuOpen(false);
+          }}
+          className={`
+            w-full md:w-auto px-6 py-2 rounded-full 
+            ${filter === 'all' ? 'bg-yellow-400 text-black' : 'border border-yellow-400 text-yellow-400'}
+            hover:bg-yellow-400 hover:text-black transition-colors
+          `}
         >
           All
         </button>
         <button 
-          onClick={() => setFilter('web')}
-          className={`px-6 py-2 rounded-full ${filter === 'web' ? 'bg-yellow-400 text-black' : 'border border-yellow-400 text-yellow-400'}`}
+          onClick={() => {
+            setFilter('web');
+            setMobileMenuOpen(false);
+          }}
+          className={`
+            w-full md:w-auto px-6 py-2 rounded-full 
+            ${filter === 'web' ? 'bg-yellow-400 text-black' : 'border border-yellow-400 text-yellow-400'}
+            hover:bg-yellow-400 hover:text-black transition-colors
+          `}
         >
           Web Apps
         </button>
         <button 
-          onClick={() => setFilter('app')}
-          className={`px-6 py-2 rounded-full ${filter === 'app' ? 'bg-yellow-400 text-black' : 'border border-yellow-400 text-yellow-400'}`}
+          onClick={() => {
+            setFilter('app');
+            setMobileMenuOpen(false);
+          }}
+          className={`
+            w-full md:w-auto px-6 py-2 rounded-full 
+            ${filter === 'app' ? 'bg-yellow-400 text-black' : 'border border-yellow-400 text-yellow-400'}
+            hover:bg-yellow-400 hover:text-black transition-colors
+          `}
         >
           Applications
         </button>
         <button 
-          onClick={() => setFilter('professional')}
-          className={`px-6 py-2 rounded-full ${filter === 'professional' ? 'bg-yellow-400 text-black' : 'border border-yellow-400 text-yellow-400'}`}
+          onClick={() => {
+            setFilter('professional');
+            setMobileMenuOpen(false);
+          }}
+          className={`
+            w-full md:w-auto px-6 py-2 rounded-full 
+            ${filter === 'professional' ? 'bg-yellow-400 text-black' : 'border border-yellow-400 text-yellow-400'}
+            hover:bg-yellow-400 hover:text-black transition-colors
+          `}
         >
           Professional
         </button>
-      </div>
+      </div> */}
 
       {/* Projects Section */}
       <div className="container mx-auto px-4 lg:px-8 pb-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {filteredProjects.map((project) => (
             <div 
               key={project.id} 
-              className={`bg-gray-800 rounded-lg overflow-hidden group hover:transform hover:scale-105 transition-all duration-300 ${project.category === 'professional' ? '' : ''}`}
+              className="bg-gray-800 rounded-lg overflow-hidden group hover:transform hover:scale-105 transition-all duration-300"
             >
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
                 <img 
                   src={project.image} 
                   alt={project.title}
@@ -163,7 +205,7 @@ const Works = () => {
                 <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4">
                   <a 
                     href={project.liveLink}
-                    className="px-4 py-2 bg-yellow-400 text-black rounded hover:bg-yellow-500 transition-colors duration-300"
+                    className="px-3 py-2 sm:px-4 sm:py-2 bg-yellow-400 text-black rounded text-sm sm:text-base hover:bg-yellow-500 transition-colors duration-300"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -171,7 +213,7 @@ const Works = () => {
                   </a>
                   <a 
                     href={project.githubLink}
-                    className="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-600 transition-colors duration-300"
+                    className="px-3 py-2 sm:px-4 sm:py-2 bg-gray-700 text-white rounded text-sm sm:text-base hover:bg-gray-600 transition-colors duration-300"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -179,26 +221,21 @@ const Works = () => {
                   </a>
                 </div>
               </div>
-              <div className="p-6">
-                <div className="flex justify-between items-center mb-4">
-                  <h3 className="text-xl font-bold">{project.title}</h3>
+              <div className="p-4 sm:p-6">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4">
+                  <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-0">{project.title}</h3>
                   {project.year && (
-                    <span className="text-sm text-yellow-400 bg-gray-700 px-2 py-1 rounded-full">
+                    <span className="text-xs sm:text-sm text-yellow-400 bg-gray-700 px-2 py-1 rounded-full">
                       {project.year}
                     </span>
                   )}
                 </div>
-                <p className="text-gray-300 mb-4">{project.description}</p>
-                {/* {project.role && (
-                  <div className="mb-4">
-                    <span className="text-sm text-gray-400">Role: {project.role}</span>
-                  </div>
-                )} */}
+                <p className="text-sm sm:text-base text-gray-300 mb-4">{project.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((tech, index) => (
                     <span 
                       key={index}
-                      className="px-3 py-1 bg-gray-700 rounded-full text-sm"
+                      className="px-2 py-1 sm:px-3 sm:py-1 bg-gray-700 rounded-full text-xs sm:text-sm"
                     >
                       {tech}
                     </span>

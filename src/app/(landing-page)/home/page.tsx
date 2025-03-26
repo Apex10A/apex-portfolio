@@ -76,13 +76,13 @@ const Home: React.FC = () => {
               Hello, I'm <span className="text-yellow-400">Praise Afolabi</span>
             </h1>
             <p className="text-base sm:text-lg lg:text-xl text-gray-300">
-              A frontend virtuoso, crafting visually stunning experiences. With HTML, CSS, and JavaScript, 
+              A frontend virtuoso, crafting visually stunning experiences. With Next.js, TailwindCSS, and Typescript, 
               I bring ideas to life. Let's collaborate and create digital magic that leaves a lasting impression!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link 
                 href="/project" 
-                className="px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-bold bg-yellow-400 text-black rounded-md hover:bg-yellow-500 transition-all duration-300 text-center"
+                className="px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-bold bg-yellow-400 text-black rounded-md hover:bg-yellow-500 transition-all cursor-pointer duration-300 text-center"
               >
                 VIEW WORKS
               </Link>

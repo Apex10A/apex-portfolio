@@ -230,19 +230,20 @@ const InteractiveContributionTracker = () => {
   useEffect(() => {
     fetchGitHubContributions();
   }, []);
-
   const renderMonthlyView = () => (
-    <div className="grid md:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
       {contributionData.monthly.map((monthData, index) => (
         <div 
           key={index} 
-          className={`${monthData.color} p-4 rounded-lg shadow-md transform transition hover:scale-105`}
+          className={`${monthData.color} p-4 rounded-lg shadow-md transform transition hover:scale-105 flex flex-col items-start`}
         >
-          <h4 className="text-lg font-semibold mb-2">{monthData.month}</h4>
-          <div className="flex items-center gap-2">
-            <CheckCircle2 className="text-white" />
-            <span className="text-3xl font-bold">{monthData.contributions}</span>
-            <span className="text-sm">Contributions</span>
+          <h4 className="text-base sm:text-lg font-semibold mb-2 truncate w-full">{monthData.month}</h4>
+          <div className="flex items-center gap-2 w-full">
+            <CheckCircle2 className="text-white shrink-0" />
+            <div className="flex flex-col">
+              <span className="text-2xl sm:text-3xl font-bold">{monthData.contributions}</span>
+              <span className="text-xs sm:text-sm">Contributions</span>
+            </div>
           </div>
         </div>
       ))}
@@ -250,39 +251,39 @@ const InteractiveContributionTracker = () => {
   );
 
   const renderDetailsView = () => (
-    <div className="grid md:grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <div className="bg-gray-800 p-4 rounded-lg flex items-center gap-4">
-        <GitBranch className="text-yellow-400" size={40} />
+        <GitBranch className="text-yellow-400 shrink-0" size={32} />
         <div>
-          <h4 className="text-xl font-semibold">Repositories</h4>
-          <p className="text-3xl font-bold text-yellow-400">
+          <h4 className="text-lg sm:text-xl font-semibold">Repositories</h4>
+          <p className="text-2xl sm:text-3xl font-bold text-yellow-400">
             {contributionData.details.repositories}
           </p>
         </div>
       </div>
       <div className="bg-gray-800 p-4 rounded-lg flex items-center gap-4">
-        <Code className="text-blue-400" size={40} />
+        <Code className="text-blue-400 shrink-0" size={32}  />
         <div>
-          <h4 className="text-xl font-semibold">Pull Requests</h4>
-          <p className="text-3xl font-bold text-blue-400">
+          <h4 className="text-lg sm:text-xl font-semibold">Pull Requests</h4>
+          <p className="text-2xl sm:text-3xl font-bold text-blue-400">
             {contributionData.details.pullRequests}
           </p>
         </div>
       </div>
       <div className="bg-gray-800 p-4 rounded-lg flex items-center gap-4">
-        <Star className="text-purple-400" size={40} />
+        <Star className="text-purple-400 shrink-0" size={32} />
         <div>
-          <h4 className="text-xl font-semibold">Total Contributions</h4>
-          <p className="text-3xl font-bold text-purple-400">
+          <h4 className="text-lg sm:text-xl font-semibold">Total Contributions</h4>
+          <p className="text-2xl sm:text-3xl font-bold text-purple-400">
             {contributionData.details.totalContributions}
           </p>
         </div>
       </div>
       <div className="bg-gray-800 p-4 rounded-lg flex items-center gap-4">
-        <BarChart3 className="text-green-400" size={40} />
+        <BarChart3 className="text-green-400 shrink-0" size={32}/>
         <div>
-          <h4 className="text-xl font-semibold">Issues Opened</h4>
-          <p className="text-3xl font-bold text-green-400">
+          <h4 className="text-lg sm:text-xl font-semibold">Issues Opened</h4>
+          <p className="text-2xl sm:text-3xl font-bold text-green-400">
             {contributionData.details.issuesOpened}
           </p>
         </div>
@@ -292,10 +293,10 @@ const InteractiveContributionTracker = () => {
 
   if (isLoading) {
     return (
-      <div className="bg-gradient-to-b from-gray-900 to-black min-h-screen text-white flex items-center justify-center">
-        <div className="flex flex-col items-center gap-4">
+      <div className="bg-gradient-to-b from-gray-900 to-black min-h-screen text-white flex items-center justify-center p-4">
+        <div className="flex flex-col items-center gap-4 text-center">
           <Loader2 className="animate-spin h-8 w-8" />
-          <p>Loading GitHub contributions...</p>
+          <p className="text-sm sm:text-base">Loading GitHub contributions...</p>
         </div>
       </div>
     );
@@ -303,10 +304,10 @@ const InteractiveContributionTracker = () => {
 
   if (error) {
     return (
-      <div className="bg-gradient-to-b from-gray-900 to-black min-h-screen text-white flex items-center justify-center">
-        <div className="text-center p-6 bg-gray-800 rounded-lg max-w-md">
-          <p className="text-red-500 mb-4">{error}</p>
-          <p className="text-sm text-gray-400">
+      <div className="bg-gradient-to-b from-gray-900 to-black min-h-screen text-white flex items-center justify-center p-4">
+        <div className="text-center p-6 bg-gray-800 rounded-lg max-w-md w-full">
+          <p className="text-red-500 mb-4 text-sm sm:text-base">{error}</p>
+          <p className="text-xs sm:text-sm text-gray-400">
             Please check your GitHub credentials and try again.
           </p>
         </div>
@@ -315,16 +316,16 @@ const InteractiveContributionTracker = () => {
   }
 
   return (
-    <div className="bg-gradient-to-b from-gray-900 min-h-screen to-black text-white p-4 md:p-8 ">
-      <div className="flex flex-col md:flex-row justify-between items-center mb-8 container pt-16 lg:pt-24 gap-4 max-w-6xl mx-auto">
-        <h2 className="text-2xl md:text-3xl font-bold flex items-center gap-3">
-          <Flame className="text-yellow-400" />
+    <div className="bg-gradient-to-b from-gray-900 min-h-screen to-black text-white p-4 md:p-8">
+      <div className="flex flex-col md:flex-row justify-between items-center mb-8 container pt-16 md:pt-16 lg:pt-24 gap-4 max-w-6xl mx-auto">
+        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold flex items-center gap-3 mb-4 md:mb-0">
+          <Flame className="text-yellow-400 shrink-0" />
           GitHub Contribution Insights
         </h2>
-        <div className="flex gap-2 ">
+        <div className="flex gap-2 flex-wrap justify-center">
           <button 
             onClick={() => setActiveView('monthly')}
-            className={`px-4 py-2 rounded-full transition ${
+            className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full transition text-sm sm:text-base ${
               activeView === 'monthly' 
                 ? 'bg-yellow-400 text-black' 
                 : 'border border-yellow-400 text-yellow-400 hover:bg-yellow-400/20'
@@ -334,7 +335,7 @@ const InteractiveContributionTracker = () => {
           </button>
           <button 
             onClick={() => setActiveView('details')}
-            className={`px-4 py-2 rounded-full transition ${
+            className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full transition text-sm sm:text-base ${
               activeView === 'details' 
                 ? 'bg-yellow-400 text-black' 
                 : 'border border-yellow-400 text-yellow-400 hover:bg-yellow-400/20'
@@ -345,33 +346,34 @@ const InteractiveContributionTracker = () => {
         </div>
       </div>
 
-      <div className="mb-8 bg-gray-800 rounded-lg p-4 flex flex-col md:flex-row justify-between items-center gap-4 max-w-6xl mx-auto">
-        <div className="flex items-center gap-4">
-          <Calendar className="text-blue-400" size={40} />
+      <div className="mb-8 bg-gray-800 rounded-lg p-4 flex flex-col sm:flex-row justify-between items-center gap-4 max-w-6xl mx-auto">
+        <div className="flex items-center gap-4 text-center sm:text-left w-full">
+          <Calendar className="text-blue-400 shrink-0" size={32}  />
           <div>
-            <h3 className="text-xl font-semibold">Current Contribution Streak</h3>
-            <p className="text-2xl font-bold text-blue-300">
+            <h3 className="text-lg sm:text-xl font-semibold">Current Contribution Streak</h3>
+            <p className="text-xl sm:text-2xl font-bold text-blue-300">
               {contributionData.streak.currentStreak} days
             </p>
             {contributionData.streak.startDate && (
-              <p className="text-sm text-gray-400">
-                From {new Date(contributionData.streak.startDate).toLocaleDateString()} to {new Date(contributionData.streak.endDate).toLocaleDateString()}
+              <p className="text-xs sm:text-sm text-gray-400">
+                From {new Date(contributionData.streak.startDate).toLocaleDateString()} 
+                {' '}to {new Date(contributionData.streak.endDate).toLocaleDateString()}
               </p>
             )}
           </div>
         </div>
-        <div className="text-center md:text-right">
-          <h4 className="text-lg font-semibold text-green-400">Longest Streak</h4>
-          <p className="text-2xl font-bold">{contributionData.streak.longestStreak} days</p>
+        <div className="text-center sm:text-right w-full sm:w-auto mt-4 sm:mt-0">
+          <h4 className="text-base sm:text-lg font-semibold text-green-400">Longest Streak</h4>
+          <p className="text-xl sm:text-2xl font-bold">{contributionData.streak.longestStreak} days</p>
         </div>
       </div>
 
       <div className='max-w-6xl mx-auto'>
-      {activeView === 'monthly' ? renderMonthlyView() : renderDetailsView()}
+        {activeView === 'monthly' ? renderMonthlyView() : renderDetailsView()}
       </div>
 
       <div className="mt-8 bg-gray-800 rounded-lg p-4 text-center max-w-6xl mx-auto">
-        <p className="text-gray-300">
+        <p className="text-xs sm:text-sm text-gray-300">
           Consistent coding activity demonstrates commitment to continuous learning and improvement.
         </p>
       </div>

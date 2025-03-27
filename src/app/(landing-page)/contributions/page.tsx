@@ -230,6 +230,7 @@ const InteractiveContributionTracker = () => {
   useEffect(() => {
     fetchGitHubContributions();
   }, []);
+
   const renderMonthlyView = () => (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
       {contributionData.monthly.map((monthData, index) => (
@@ -253,7 +254,7 @@ const InteractiveContributionTracker = () => {
   const renderDetailsView = () => (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <div className="bg-gray-800 p-4 rounded-lg flex items-center gap-4">
-        <GitBranch className="text-yellow-400 shrink-0" size={32} />
+        <GitBranch className="text-yellow-400 shrink-0" size={32}  />
         <div>
           <h4 className="text-lg sm:text-xl font-semibold">Repositories</h4>
           <p className="text-2xl sm:text-3xl font-bold text-yellow-400">
@@ -271,7 +272,7 @@ const InteractiveContributionTracker = () => {
         </div>
       </div>
       <div className="bg-gray-800 p-4 rounded-lg flex items-center gap-4">
-        <Star className="text-purple-400 shrink-0" size={32} />
+        <Star className="text-purple-400 shrink-0" size={32}  />
         <div>
           <h4 className="text-lg sm:text-xl font-semibold">Total Contributions</h4>
           <p className="text-2xl sm:text-3xl font-bold text-purple-400">
@@ -280,7 +281,7 @@ const InteractiveContributionTracker = () => {
         </div>
       </div>
       <div className="bg-gray-800 p-4 rounded-lg flex items-center gap-4">
-        <BarChart3 className="text-green-400 shrink-0" size={32}/>
+        <BarChart3 className="text-green-400 shrink-0" size={32} />
         <div>
           <h4 className="text-lg sm:text-xl font-semibold">Issues Opened</h4>
           <p className="text-2xl sm:text-3xl font-bold text-green-400">

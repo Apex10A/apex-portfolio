@@ -45,17 +45,17 @@ const Works = () => {
       liveLink: "https://drip-republic.netlify.app/",
       githubLink: "https://github.com/Apex10A/drip-republic",
     },
-    {
-      id: 2,
-      title: "IAIIEA Website",
-      description:
-        "A professional website for an organization, enabling users to access real-time information about conferences, events, and membership benefits. Built with a responsive and modern design using Next.js and TailwindCSS.",
-      image: "/iaiiea.png",
-      category: "web",
-      tech: ["Next.js", "API", "TailwindCSS", "TypeScript", "Ant Design", "Material UI"],
-      liveLink: "https://iaiiea-web.netlify.app/",
-      githubLink: "https://github.com/Apex10A/IAIIEA",
-    },
+    // {
+    //   id: 2,
+    //   title: "IAIIEA Website",
+    //   description:
+    //     "A professional website for an organization, enabling users to access real-time information about conferences, events, and membership benefits. Built with a responsive and modern design using Next.js and TailwindCSS.",
+    //   image: "/iaiiea.png",
+    //   category: "web",
+    //   tech: ["Next.js", "API", "TailwindCSS", "TypeScript", "Ant Design", "Material UI"],
+    //   liveLink: "https://iaiiea-web.netlify.app/",
+    //   githubLink: "https://github.com/Apex10A/IAIIEA",
+    // },
     {
       id: 3,
       title: "Devlinks Website",

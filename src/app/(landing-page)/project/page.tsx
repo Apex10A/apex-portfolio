@@ -45,17 +45,18 @@ const Works = () => {
       liveLink: "https://drip-republic.netlify.app/",
       githubLink: "https://github.com/Apex10A/drip-republic",
     },
-    // {
-    //   id: 2,
-    //   title: "IAIIEA Website",
-    //   description:
-    //     "A professional website for an organization, enabling users to access real-time information about conferences, events, and membership benefits. Built with a responsive and modern design using Next.js and TailwindCSS.",
-    //   image: "/iaiiea.png",
-    //   category: "web",
-    //   tech: ["Next.js", "API", "TailwindCSS", "TypeScript", "Ant Design", "Material UI"],
-    //   liveLink: "https://iaiiea-web.netlify.app/",
-    //   githubLink: "https://github.com/Apex10A/IAIIEA",
-    // },
+    {
+      id: 2,
+      title: "Momentum",
+      description:
+        "Momentum is a dynamic, responsive website developed for tracking of daily habits and personal stats like sleep, water intake, and screen time. It contains a chart that shows weekly progress and a way to set daily progress, daily goals and reminders if you miss something. You can also set a daily goal for each habit and track your progress over time.",
+      image: "/momentum.png",
+      category: "web",
+      tech: ["Next.js", "TypeScript", "TailwindCSS", "Chart.js", "Framer motion"],
+      liveLink: "https://track-habits-nine.vercel.app/",
+      githubLink: "https://github.com/Apex10A/Habit-tracker",
+    },
+    
     {
       id: 3,
       title: "Devlinks Website",

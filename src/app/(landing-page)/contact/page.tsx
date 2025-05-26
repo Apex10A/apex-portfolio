@@ -361,7 +361,7 @@ const Contact: React.FC = () => {
   const availabilityStatus = {
     status: 'available', // 'available', 'busy', 'unavailable'
     nextAvailable: 'Immediately',
-    responseTime: '24 hours'
+    responseTime: 'Less than 1 hour'
   };
 
   if (isLoading) {
@@ -414,7 +414,8 @@ const Contact: React.FC = () => {
                    availabilityStatus.status === 'busy' ? 'Partially available' : 'Fully booked'}
                 </span>
                 <span className="text-gray-400 block">
-                  Response time: {availabilityStatus.responseTime}
+                  Response time: 
+                  {availabilityStatus.responseTime}
                 </span>
               </div>
             </div>
@@ -442,7 +443,7 @@ const Contact: React.FC = () => {
                 </h3>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="text-center p-4 bg-gray-800/50 rounded-xl">
-                    <div className="text-2xl font-bold text-yellow-400">24h</div>
+                    <div className="text-2xl font-bold text-yellow-400">1h</div>
                     <div className="text-sm text-gray-400">Response Time</div>
                   </div>
                   <div className="text-center p-4 bg-gray-800/50 rounded-xl">

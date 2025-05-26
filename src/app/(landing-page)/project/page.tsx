@@ -8,19 +8,19 @@ const Works = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const projects = [
-    {
-      id: 7,
-      title: "ReconXi - Reconcile AI",
-      description:
-        "An AI-Powered Financial Reconciliation platform designed to compare financial records with bank statements. Offers a simple file upload interface, AI-based matching algorithms with manual overrides, and multiple export options to decrease manual interventions while increasing efficiency and accuracy.",
-      image: "/reconxi.png", 
-      category: "professional",
-      tech: ["Next.js", "AI Matching Algorithms", "TypeScript", "Gemini API", "TailwindCSS", "Framer motion"],
-      year: "Jan - April 2025",
-      role: "Lead Frontend Developer",
-      liveLink: "https://reconxi.com/", 
-      githubLink: "https://github.com/hngprojects/reconcile-ai-fe",
-    },
+    // {
+    //   id: 7,
+    //   title: "ReconXi - Reconcile AI",
+    //   description:
+    //     "An AI-Powered Financial Reconciliation platform designed to compare financial records with bank statements. Offers a simple file upload interface, AI-based matching algorithms with manual overrides, and multiple export options to decrease manual interventions while increasing efficiency and accuracy.",
+    //   image: "/reconxi.png", 
+    //   category: "professional",
+    //   tech: ["Next.js", "AI Matching Algorithms", "TypeScript", "Gemini API", "TailwindCSS", "Framer motion"],
+    //   year: "Jan - April 2025",
+    //   role: "Lead Frontend Developer",
+    //   liveLink: "https://reconxi.com/", 
+    //   githubLink: "https://github.com/hngprojects/reconcile-ai-fe",
+    // },
     {
       id: 8,
       title: "HomeworkAI",

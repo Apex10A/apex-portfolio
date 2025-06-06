@@ -3,15 +3,41 @@ import React, { useState, useEffect } from 'react';
 import { Suspense } from 'react';
 import { Search, ExternalLink, Github, Calendar, User, Code, Filter, X, Eye, Star } from 'lucide-react';
 
-const Works = () => {
-  const [filter, setFilter] = useState('all');
-  const [searchTerm, setSearchTerm] = useState('');
-  const [sortBy, setSortBy] = useState('newest');
-  const [viewMode, setViewMode] = useState('grid');
-  const [selectedProject, setSelectedProject] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  category: 'professional' | 'web' | 'app';
+  tech: string[];
+  year: string;
+  role?: string;
+  liveLink: string;
+  githubLink: string;
+  featured?: boolean;
+  status: string;
+}
 
-  const projects = [
+interface Category {
+  id: string;
+  label: string;
+  count: number;
+}
+
+interface ProjectModalProps {
+  project: Project;
+  onClose: () => void;
+}
+
+const Works = () => {
+  const [filter, setFilter] = useState<string>('all');
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [sortBy, setSortBy] = useState<string>('newest');
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const projects: Project[] = [
     {
       id: 8,
       title: "HomeworkAI",
@@ -126,7 +152,7 @@ const Works = () => {
     { id: 'app', label: 'Applications', count: projects.filter(p => p.category === 'app').length }
   ];
 
-  const ProjectModal = ({ project, onClose }) => (
+  const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => (
     <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center p-4 z-50 backdrop-blur-sm">
       <div className="bg-gray-900 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-gray-700">
         <div className="relative">

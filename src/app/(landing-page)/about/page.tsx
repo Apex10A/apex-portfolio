@@ -7,7 +7,10 @@ import {
   GanttChart,
   Coffee,
   Timer,
-  ChevronRight
+  ChevronRight,
+  Users,
+  Zap,
+  Layers
 } from 'lucide-react';
 import "@/app/index.css"
 import { Suspense } from 'react'
@@ -121,29 +124,29 @@ const About: React.FC = () => {
 
   const skills: Skill[] = [
     {
-      name: "Frontend Development",
+      name: "Product Development",
       level: 90,
-      icon: <Code2 className="w-6 h-6" />,
-      tools: ["React", "Next.js", "TypeScript"]
+      icon: <Layers className="w-6 h-6" />,
+      tools: ["React", "Next.js", "TypeScript", "Tailwind CSS"]
     },
     {
       name: "UI/UX Design",
       level: 85,
       icon: <Brain className="w-6 h-6" />,
-      tools: ["Tailwind CSS", "Material-UI", "Styled Components"]
+      tools: ["Figma", "Chakra UI", "Responsive Design", "Accessibility"]
     },
     {
-      name: "Backend Integration",
-      level: 75,
-      icon: <GanttChart className="w-6 h-6" />,
-      tools: ["Firebase", "RESTful APIs", "Redux"]
+      name: "System Architecture",
+      level: 80,
+      icon: <Zap className="w-6 h-6" />,
+      tools: ["Clean Architecture", "Testing", "Performance", "Git & GitHub"]
     }
   ];
 
   const stats: StatItem[] = [
     { icon: <Rocket className="w-8 h-8 mx-auto mb-4 text-yellow-400" />, count: projectsCount, label: "Projects Completed" },
     { icon: <Timer className="w-8 h-8 mx-auto mb-4 text-yellow-400" />, count: experienceCount, label: "Years Experience" },
-    { icon: <Coffee className="w-8 h-8 mx-auto mb-4 text-yellow-400" />, count: clientsCount, label: "Happy Clients" }
+    { icon: <Users className="w-8 h-8 mx-auto mb-4 text-yellow-400" />, count: clientsCount, label: "Happy Clients" }
   ];
 
   return (
@@ -154,17 +157,17 @@ const About: React.FC = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
           <div className={`transform transition-all duration-700 ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'}`}>
             <h1 className="text-4xl lg:text-6xl font-bold mb-6">
-              Crafting Digital <span className="text-yellow-400">Experiences</span>
+              Building Digital <span className="text-yellow-400">Products</span>
             </h1>
             <p className="text-gray-300 text-lg mb-8">
-              As a frontend virtuoso with {experienceCount}+ years of experience, I transform complex problems into elegant solutions. My passion lies in creating intuitive, performant, and visually stunning web applications that make a difference.
+              As a Product Developer at VeendHQ, I specialize in crafting modern, scalable, and user-friendly web applications. With a focus on clean architecture and performance, I transform complex problems into elegant solutions that make a real impact.
             </p>
             <div className="flex flex-wrap gap-4">
               <a href="#contact" className="px-8 py-3 bg-yellow-400 text-black rounded-lg font-medium hover:bg-yellow-500 transition-colors duration-300">
                 Get in Touch
               </a>
               <a 
-                href="/resume.pdf" 
+                href="/Praise Afolabi.pdf" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="px-8 py-3 border-2 border-yellow-400 text-yellow-400 rounded-lg font-medium hover:bg-yellow-400 hover:text-black transition-colors duration-300"
@@ -212,10 +215,10 @@ const About: React.FC = () => {
         }`}>
           <h2 className="text-3xl font-bold mb-6">My Journey</h2>
           <p className="text-gray-300 mb-8">
-            From crafting simple websites to building complex web applications, my journey has been driven by a passion for creating exceptional digital experiences. I constantly stay updated with the latest technologies and best practices to deliver cutting-edge solutions.
+            From completing the competitive HNG Internship to my current role at VeendHQ, my journey has been focused on building scalable frontend systems and creating exceptional user experiences. I'm constantly learning and implementing best practices in product development, testing, and clean architecture.
           </p>
           <a
-            href="/resume.pdf"
+            href="/Praise Afolabi.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-yellow-400 hover:text-yellow-500 transition-colors duration-300"

@@ -24,7 +24,11 @@ interface TechStackItemProps {
 }
 
 // Data
-const TECH_STACK = ['React', 'JavaScript', 'TypeScript', 'Tailwind CSS', 'Next.js', 'Git & Github', 'HTML5', 'CSS3', 'Firebase', 'Redux', 'Material UI', 'Ant design'] as const;
+const TECH_STACK = [
+  'React', 'Next.js', 'TypeScript', 'JavaScript', 
+  'Tailwind CSS', 'Chakra UI', 'Git & GitHub', 
+  'HTML5', 'CSS3', 'Figma', 'VS Code', 'Testing'
+] as const;
 
 const STATS: StatCardProps[] = [
   { count: '4+', label: 'Years Experience' },
@@ -109,8 +113,9 @@ export default function Home() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              A frontend virtuoso, crafting visually stunning experiences. With Next.js, TailwindCSS, and Typescript, 
-              I bring ideas to life. Let's collaborate and create digital magic that leaves a lasting impression!
+              A Product Developer passionate about building modern, scalable, and user-friendly web applications. 
+              Currently interning at VeendHQ, I transform UI designs into clean, functional code while solving 
+              real-world problems. I'm not just coding — I'm crafting experiences that make a difference.
             </motion.p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -148,6 +153,29 @@ export default function Home() {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* Current Focus Section */}
+      <section className="container mx-auto px-4 lg:px-8 py-16 sm:py-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="max-w-4xl mx-auto text-center"
+        >
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8">What I'm Working On</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-gray-800 p-6 rounded-xl">
+              <h3 className="text-xl font-semibold mb-4 text-yellow-400">Current Role</h3>
+              <p className="text-gray-300">Building frontend features at VeendHQ, focusing on creating scalable and maintainable systems.</p>
+            </div>
+            <div className="bg-gray-800 p-6 rounded-xl">
+              <h3 className="text-xl font-semibold mb-4 text-yellow-400">Learning Goals</h3>
+              <p className="text-gray-300">Improving problem-solving skills, mastering testing, and implementing clean architecture patterns.</p>
+            </div>
+          </div>
+        </motion.div>
       </section>
 
       {/* Tech Stack Section */}

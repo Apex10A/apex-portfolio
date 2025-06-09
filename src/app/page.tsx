@@ -23,6 +23,12 @@ interface TechStackItemProps {
   index: number;
 }
 
+interface AchievementCardProps {
+  title: string;
+  description: string;
+  icon: string;
+}
+
 // Data
 const TECH_STACK = [
   'React', 'Next.js', 'TypeScript', 'JavaScript', 
@@ -35,6 +41,24 @@ const STATS: StatCardProps[] = [
   { count: '20+', label: 'Projects Completed' },
   { count: '8+', label: 'Happy Clients' },
   { count: '3+', label: 'Awards' },
+];
+
+const ACHIEVEMENTS: AchievementCardProps[] = [
+  {
+    title: "HNG Internship",
+    description: "Successfully completed the competitive HNG Internship program, contributing to innovative solutions in education technology.",
+    icon: "🏆"
+  },
+  {
+    title: "VeendHQ Internship",
+    description: "Currently interning at VeendHQ, gaining hands-on experience in building scalable frontend systems.",
+    icon: "🚀"
+  },
+  {
+    title: "Open Source Contributor",
+    description: "Active contributor to open-source projects, demonstrating commitment to the developer community.",
+    icon: "💻"
+  }
 ];
 
 const SOCIAL_LINKS: SocialLinkProps[] = [
@@ -71,6 +95,21 @@ const TechStackItem = ({ name, index }: TechStackItemProps) => (
   </motion.div>
 );
 
+const AchievementCard = ({ title, description, icon }: AchievementCardProps) => (
+  <motion.div
+    className="bg-gray-800 p-6 rounded-xl"
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.5 }}
+    whileHover={{ y: -5, transition: { type: "spring", stiffness: 300 } }}
+  >
+    <div className="text-4xl mb-4">{icon}</div>
+    <h3 className="text-xl font-semibold mb-2 text-yellow-400">{title}</h3>
+    <p className="text-gray-300">{description}</p>
+  </motion.div>
+);
+
 const SocialLink = ({ href, icon: Icon, label }: SocialLinkProps) => (
   <motion.a
     href={href}
@@ -98,6 +137,15 @@ export default function Home() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="inline-block bg-yellow-400/10 text-yellow-400 px-4 py-2 rounded-full text-sm font-medium mb-4"
+            >
+              Product Developer & Frontend Engineer
+            </motion.div>
+            
             <motion.h1 
               className="text-3xl sm:text-4xl lg:text-7xl font-extrabold leading-tight"
               initial={{ opacity: 0 }}
@@ -153,6 +201,24 @@ export default function Home() {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* Achievements Section */}
+      <section className="container mx-auto px-4 lg:px-8 py-16 sm:py-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="max-w-6xl mx-auto"
+        >
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-12">Professional Achievements</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {ACHIEVEMENTS.map((achievement, index) => (
+              <AchievementCard key={index} {...achievement} />
+            ))}
+          </div>
+        </motion.div>
       </section>
 
       {/* Current Focus Section */}

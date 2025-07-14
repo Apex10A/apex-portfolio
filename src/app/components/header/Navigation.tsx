@@ -22,7 +22,7 @@ interface NavLinkProps {
 
 // Constants
 const NAV_ITEMS: NavItem[] = [
-  { path: '/', label: 'Home' },
+  { path: '/home', label: 'Home' },
   { 
     path: '/about', 
     label: 'About',

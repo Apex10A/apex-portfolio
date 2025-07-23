@@ -6,7 +6,6 @@ import { IconType } from 'react-icons';
 import { FaGithub, FaTwitter, FaLinkedin } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
-// Component types
 interface StatCardProps {
   count: string;
   label: string;
@@ -29,15 +28,15 @@ interface AchievementCardProps {
   icon: string;
 }
 
-// Data
 const TECH_STACK = [
-  'React', 'Next.js', 'TypeScript', 'JavaScript', 
+  'React', 'Next.js', 'TypeScript', 'JavaScript',
+  'Gluestack', 'Redux', '',
   'Tailwind CSS', 'Chakra UI', 'Git & GitHub', 
   'HTML5', 'CSS3', 'Figma', 'VS Code', 'Testing'
 ] as const;
 
 const STATS: StatCardProps[] = [
-  { count: '4+', label: 'Years Experience' },
+  { count: '5+', label: 'Years Experience' },
   { count: '20+', label: 'Projects Completed' },
   { count: '8+', label: 'Happy Clients' },
   { count: '3+', label: 'Awards' },
@@ -162,8 +161,8 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               A Product Developer passionate about building modern, scalable, and user-friendly web applications. 
-              Currently interning at VeendHQ, I transform UI designs into clean, functional code while solving 
-              real-world problems. I'm not just coding — I'm crafting experiences that make a difference.
+              Currently working at VeendHQ, I transform UI designs into clean, functional code while solving 
+              real-world problems. I just don't code, I craft experiences that make a difference.
             </motion.p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -173,7 +172,7 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: 0.6 }}
               >
                 <Link 
-                  href="/project" 
+                  href="/project"  
                   className="px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-bold bg-yellow-400 text-black rounded-md hover:bg-yellow-500 transition-all duration-300 text-center block"
                 >
                   VIEW WORKS

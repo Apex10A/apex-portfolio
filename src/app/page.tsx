@@ -6,7 +6,6 @@ import { IconType } from 'react-icons';
 import { FaGithub, FaTwitter, FaLinkedin } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
-// Component types
 interface StatCardProps {
   count: string;
   label: string;
@@ -29,15 +28,15 @@ interface AchievementCardProps {
   icon: string;
 }
 
-// Data
 const TECH_STACK = [
-  'React', 'Next.js', 'TypeScript', 'JavaScript', 
+  'React', 'Next.js', 'TypeScript', 'JavaScript',
+  'Gluestack', 'Redux', 'Zustand', 
   'Tailwind CSS', 'Chakra UI', 'Git & GitHub', 
   'HTML5', 'CSS3', 'Figma', 'VS Code', 'Testing'
 ] as const;
 
 const STATS: StatCardProps[] = [
-  { count: '4+', label: 'Years Experience' },
+  { count: '5+', label: 'Years Experience' },
   { count: '20+', label: 'Projects Completed' },
   { count: '8+', label: 'Happy Clients' },
   { count: '3+', label: 'Awards' },
@@ -50,8 +49,8 @@ const ACHIEVEMENTS: AchievementCardProps[] = [
     icon: "🏆"
   },
   {
-    title: "VeendHQ Internship",
-    description: "Currently interning at VeendHQ, gaining hands-on experience in building scalable frontend systems.",
+    title: "VeendHQ",
+    description: "Currently working at VeendHQ, building scalable frontend systems and working with a team of talented developers.",
     icon: "🚀"
   },
   {
@@ -64,10 +63,9 @@ const ACHIEVEMENTS: AchievementCardProps[] = [
 const SOCIAL_LINKS: SocialLinkProps[] = [
   { href: 'https://github.com/Apex10A', icon: FaGithub, label: 'GitHub' },
   { href: 'https://x.com/dev_apexxr', icon: FaTwitter, label: 'Twitter' },
-  { href: 'https://www.linkedin.com/in/praise-afolabi-67b1292b5/', icon: FaLinkedin, label: 'LinkedIn' },
+  // { href: 'https://www.linkedin.com/in/praise-afolabi-67b1292b5/', icon: FaLinkedin, label: 'LinkedIn' },
 ];
 
-// Components
 const StatCard = ({ count, label }: StatCardProps) => (
   <motion.div 
     className="bg-gray-800 p-4 sm:p-6 rounded-lg text-center"
@@ -128,7 +126,6 @@ const SocialLink = ({ href, icon: Icon, label }: SocialLinkProps) => (
 export default function Home() {
   return (
     <div className="bg-gradient-to-b from-gray-900 to-black min-h-screen text-white overflow-x-hidden">
-      {/* Hero Section */}
       <section className="container mx-auto px-4 lg:px-8 pt-32 sm:pt-36 lg:pt-44">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
           <motion.div 
@@ -162,8 +159,8 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               A Product Developer passionate about building modern, scalable, and user-friendly web applications. 
-              Currently interning at VeendHQ, I transform UI designs into clean, functional code while solving 
-              real-world problems. I'm not just coding — I'm crafting experiences that make a difference.
+              Currently working at VeendHQ, I transform UI designs into clean, functional code while solving 
+              real-world problems. I just don't code, I craft experiences that make a difference.
             </motion.p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -173,7 +170,7 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: 0.6 }}
               >
                 <Link 
-                  href="/project" 
+                  href="/project"  
                   className="px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-bold bg-yellow-400 text-black rounded-md hover:bg-yellow-500 transition-all duration-300 text-center block"
                 >
                   VIEW WORKS
@@ -185,7 +182,7 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: 0.7 }}
               >
                 <Link 
-                  href="#contact" 
+                  href="/contact" 
                   className="px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-bold border-2 border-yellow-400 text-yellow-400 rounded-md hover:bg-yellow-400 hover:text-black transition-all duration-300 text-center block"
                 >
                   CONTACT ME

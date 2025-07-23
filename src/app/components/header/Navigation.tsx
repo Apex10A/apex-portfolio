@@ -6,7 +6,6 @@ import { Menu, X, Download, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import "@/app/index.css"
 
-// Types
 interface NavItem {
   path: string;
   label: string;
@@ -20,17 +19,16 @@ interface NavLinkProps {
   className?: string;
 }
 
-// Constants
 const NAV_ITEMS: NavItem[] = [
   { path: '/home', label: 'Home' },
   { 
     path: '/about', 
     label: 'About',
-    subItems: [
-      { path: '/about#experience', label: 'Experience' },
-      { path: '/about#education', label: 'Education' },
-      { path: '/about#skills', label: 'Skills' }
-    ]
+    // subItems: [
+    //   { path: '/about#experience', label: 'Experience' },
+    //   { path: '/about#education', label: 'Education' },
+    //   { path: '/about#skills', label: 'Skills' }
+    // ]
   },
   { path: '/project', label: 'Works' },
   { path: '/blog', label: 'Blog' },
@@ -38,7 +36,6 @@ const NAV_ITEMS: NavItem[] = [
   { path: '/contributions', label: 'Contributions' }
 ];
 
-// NavLink Component
 const NavLink: React.FC<NavLinkProps> = ({ item, isActive, onClick, className }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -60,8 +57,6 @@ const NavLink: React.FC<NavLinkProps> = ({ item, isActive, onClick, className })
         {item.label}
         {item.subItems && <ChevronDown className="w-4 h-4" />}
       </Link>
-
-      {/* Dropdown Menu */}
       {item.subItems && (
         <AnimatePresence>
           {isHovered && (
@@ -90,7 +85,7 @@ const NavLink: React.FC<NavLinkProps> = ({ item, isActive, onClick, className })
   );
 };
 
-// Resume Button Component
+
 const ResumeButton: React.FC<{ className?: string }> = ({ className }) => (
   <motion.a
     href="/Praise Afolabi.pdf"
@@ -143,7 +138,7 @@ const Navigation: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20">
-          {/* Logo */}
+
           <motion.div 
             className="flex items-center"
             whileHover={{ scale: 1.05 }}
@@ -156,8 +151,6 @@ const Navigation: React.FC = () => {
               Praise Afolabi
             </Link>
           </motion.div>
-
-          {/* Desktop Navigation */}
           <div className="hidden md:flex md:items-center md:space-x-8">
             {NAV_ITEMS.map((item) => (
               <NavLink
@@ -169,7 +162,6 @@ const Navigation: React.FC = () => {
             <ResumeButton />
           </div>
 
-          {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
             <motion.button
               onClick={() => setIsOpen(!isOpen)}
@@ -189,7 +181,6 @@ const Navigation: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
       <AnimatePresence>
         {isOpen && (
           <motion.div 

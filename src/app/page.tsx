@@ -36,9 +36,9 @@ const TECH_STACK = [
 ] as const;
 
 const STATS: StatCardProps[] = [
-  { count: '5+', label: 'Years Experience' },
-  { count: '20+', label: 'Projects Completed' },
-  { count: '8+', label: 'Happy Clients' },
+  { count: '2+', label: 'Professional work Experience' },
+  { count: '10+', label: 'Projects Completed' },
+  { count: '5+', label: 'Happy Clients' },
   { count: '3+', label: 'Awards' },
 ];
 
@@ -126,8 +126,8 @@ const SocialLink = ({ href, icon: Icon, label }: SocialLinkProps) => (
 export default function Home() {
   return (
     <div className="bg-gradient-to-b from-gray-900 to-black min-h-screen text-white overflow-x-hidden">
-      <section className="container mx-auto px-4 lg:px-8 pt-32 sm:pt-36 lg:pt-44">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
+      <section className=" mx-auto px-4 lg:px-8 ">
+        <div className="flex flex-col min-h-screen lg:flex-row items-center justify-between gap-8 lg:gap-12">
           <motion.div 
             className="text-center lg:text-left lg:w-1/2 space-y-6"
             initial={{ opacity: 0, x: -20 }}
@@ -207,7 +207,7 @@ export default function Home() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="max-w-6xl mx-auto"
+          className=" mx-auto"
         >
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-12">Professional Achievements</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

@@ -14,10 +14,18 @@
   }
 }
 
+@font-face {
+  font-family: 'Clash Grotesk';
+  src: url('./fonts/ClashGrotesk-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Clash Grotesk', Arial, Helvetica, sans-serif;
 }
 
 @layer utilities {

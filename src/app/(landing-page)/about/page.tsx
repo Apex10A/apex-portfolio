@@ -154,7 +154,7 @@ const About: React.FC = () => {
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
       <div className="container mx-auto px-4 pt-24 pb-16">
         {/* Hero Section */}
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
+        {/* <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
           <div className={`transform transition-all duration-700 ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'}`}>
             <h1 className="text-4xl lg:text-6xl font-bold mb-6">
               Building Digital <span className="text-yellow-400">Products</span>
@@ -185,7 +185,7 @@ const About: React.FC = () => {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-2xl"></div>
           </div>
-        </div>
+        </div> */}
 
         {/* Stats Section */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">

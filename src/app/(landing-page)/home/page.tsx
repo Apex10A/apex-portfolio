@@ -147,7 +147,7 @@ export default function Home() {
             </motion.div>
             
             <motion.h1 
-              className="text-3xl sm:text-4xl lg:text-7xl font-extrabold leading-tight"
+              className="text-3xl sm:text-4xl lg:text-7xl font-extrabold leading-tight max-w-2xl"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}

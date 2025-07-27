@@ -153,8 +153,8 @@ const Works = () => {
   ];
 
   const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => (
-    <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center p-4 z-50 backdrop-blur-sm">
-      <div className="bg-gray-900 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-gray-700">
+    <div className="">
+      <div className="">
         <div className="relative">
           <img src={project.image} alt={project.title} className="w-full h-64 object-cover rounded-t-2xl" />
           <button 

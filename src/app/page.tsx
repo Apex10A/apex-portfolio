@@ -5,6 +5,10 @@ import Link from 'next/link';
 import { IconType } from 'react-icons';
 import { FaGithub, FaTwitter, FaLinkedin } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import { div } from 'framer-motion/client';
+import Works from './(landing-page)/project/page';
+import Contact from './(landing-page)/contact/page';
+import About from './(landing-page)/about/page';
 
 interface StatCardProps {
   count: string;
@@ -28,6 +32,52 @@ interface AchievementCardProps {
   icon: string;
 }
 
+const work_experience = [
+  {
+    id: 1,
+    company_name: 'VeendHQ',
+    status: 'Onsite',
+    website_url: '',
+    what_company_does: '',
+    company_location: 'Lagos',
+    description: '',
+    tenure: 'June 2025 - present',
+    description_of_workdone: ''
+  },
+  {
+    id: 2,
+    company_name: 'IAIIEA',
+    status: 'Remote',
+    website_url: '',
+    what_company_does: '',
+    company_location: 'Abuja',
+    description: '',
+    tenure: 'June 2024 - June 2025',
+    description_of_workdone: ''
+  },
+  {
+    id: 3,
+    company_name: 'ReconXI',
+    status: 'Onsite',
+    website_url: '',
+    what_company_does: '',
+    company_location: 'US',
+    description: '',
+    tenure: 'June 2025 - present',
+    description_of_workdone: ''
+  },
+  {
+    id: 4,
+    company_name: 'HNG Internship',
+    status: 'Remote',
+    website_url: '',
+    what_company_does: '',
+    company_location: 'Lagos',
+    description: '',
+    tenure: ' 2025 - present',
+    description_of_workdone: ''
+  },
+]
 const TECH_STACK = [
   'React', 'Next.js', 'TypeScript', 'JavaScript',
   'Gluestack', 'Redux', 'Zustand', 
@@ -125,8 +175,9 @@ const SocialLink = ({ href, icon: Icon, label }: SocialLinkProps) => (
 
 export default function Home() {
   return (
-    <div className="bg-gradient-to-b from-gray-900 to-black min-h-screen text-white overflow-x-hidden">
-      <section className=" mx-auto px-4 lg:px-8 ">
+    <div>
+      <div className="bg-gradient-to-b from-gray-900 to-black min-h-screen text-white overflow-x-hidden">
+      <section className="container mx-auto px-4 lg:px-8">
         <div className="flex flex-col min-h-screen lg:flex-row items-center justify-between gap-8 lg:gap-12">
           <motion.div 
             className="text-center lg:text-left lg:w-1/2 space-y-6"
@@ -144,7 +195,7 @@ export default function Home() {
             </motion.div>
             
             <motion.h1 
-              className="text-3xl sm:text-4xl lg:text-7xl font-extrabold leading-tight"
+              className="text-3xl sm:text-4xl lg:text-7xl font-extrabold leading-tight max-w-2xl"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -159,7 +210,7 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               A Product Developer passionate about building modern, scalable, and user-friendly web applications. 
-              Currently working at VeendHQ, I transform UI designs into clean, functional code while solving 
+              I transform UI designs into clean, functional code while solving 
               real-world problems. I just don't code, I craft experiences that make a difference.
             </motion.p>
             
@@ -290,6 +341,11 @@ export default function Home() {
           <p>© {new Date().getFullYear()} Praise Afolabi. All Rights Reserved.</p>
         </motion.footer>
       </section>
+    </div>
+    <About/>
+    <Works/>
+    <Contact/>
+    
     </div>
   );
 }

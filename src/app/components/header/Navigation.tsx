@@ -41,7 +41,7 @@ const NavLink: React.FC<NavLinkProps> = ({ item, isActive, onClick, className })
 
   return (
     <div 
-      className="relative"
+      className="relative container"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

@@ -151,16 +151,19 @@ const About: React.FC = () => {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
-      <div className="container mx-auto px-4 pt-24 pb-16">
-        {/* Hero Section */}
-        {/* <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
+    <div className="">
+      <div className="pt-24 pb-16">
+        
+        <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
           <div className={`transform transition-all duration-700 ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'}`}>
             <h1 className="text-4xl lg:text-6xl font-bold mb-6">
-              Building Digital <span className="text-yellow-400">Products</span>
+              My  <span className="text-yellow-400">Story</span>
             </h1>
-            <p className="text-gray-300 text-lg mb-8">
+            <p className="text-gray-300 text-lg mb-8 opacity-[0.9] leading-[30px]">
+              It all started in 2021 during the Covid 19 break, in my 100L,
               As a Product Developer at VeendHQ, I specialize in crafting modern, scalable, and user-friendly web applications. With a focus on clean architecture and performance, I transform complex problems into elegant solutions that make a real impact.
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet facere culpa veniam nesciunt alias ab blanditiis deserunt consequatur voluptatem eligendi.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam dolore, assumenda optio dolorum enim voluptatum a consectetur iusto modi, deleniti totam suscipit excepturi illo tempore nihil quas doloribus, eum consequuntur atque numquam exercitationem magnam commodi aliquid! Error aliquid quibusdam voluptas veritatis, reiciendis, voluptatem non atque provident nam repellat molestiae incidunt.
             </p>
             <div className="flex flex-wrap gap-4">
               <a href="#contact" className="px-8 py-3 bg-yellow-400 text-black rounded-lg font-medium hover:bg-yellow-500 transition-colors duration-300">
@@ -185,9 +188,9 @@ const About: React.FC = () => {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-2xl"></div>
           </div>
-        </div> */}
+        </div>
 
-        {/* Stats Section */}
+   
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
           {stats.map((stat) => (
             <StatCard key={stat.label} {...stat} />

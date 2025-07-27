@@ -41,7 +41,7 @@ const NavLink: React.FC<NavLinkProps> = ({ item, isActive, onClick, className })
 
   return (
     <div 
-      className="relative container"
+      className="relative container "
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -130,13 +130,13 @@ const Navigation: React.FC = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`fixed w-full z-50 transition-all duration-300 ${
+      className={`fixed w-full z-50 transition-all duration-300  ${
         scrolled 
           ? 'bg-gray-900/95 backdrop-blur-sm shadow-lg' 
           : 'bg-transparent'
       }`}
     >
-      <div className=" mx-auto px-4 sm:px-6 lg:px-8">
+      <div className=" mx-auto px-4 sm:px-6 lg:px-8 container mx-auto ">
         <div className="flex justify-between h-20">
 
           <motion.div 

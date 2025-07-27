@@ -48,7 +48,7 @@ const work_experience: WorkExperience[] = [
     id: 1,
     company_name: 'VeendHQ',
     status: 'Onsite',
-    website_url: '',
+    website_url: 'https://veendhq.com/',
     what_company_does: 'FinTech startup building innovative payment solutions',
     company_location: 'Lagos',
     description: 'Frontend Engineer',
@@ -259,6 +259,63 @@ export default function Home() {
             ))}
           </div>
         </div>
+
+        <section className="">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="mx-auto"
+      >
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-12 text-yellow-400">
+          My Work Experience
+        </h2>
+        
+        <div className="space-y-8">
+          {work_experience.map((work, index) => (
+            <motion.div
+              key={work.id}
+              className="bg-gray-800 p-6 rounded-xl border-l-4 border-yellow-400"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -5, transition: { type: "spring", stiffness: 300 } }}
+            >
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
+                <div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white">
+                    {work?.company_name}
+                  </h3>
+                  <p className="text-gray-300">{work?.description}</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="inline-block px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-yellow-400/20 text-yellow-400">
+                    {work?.status}
+                  </span>
+                  <span className="text-gray-400 text-sm sm:text-base">
+                    {work?.tenure}
+                  </span>
+                </div>
+              </div>
+              
+              <div className="mt-4">
+                <p className="text-gray-400 italic">{work?.what_company_does}</p>
+                <p className="text-gray-300 mt-3">{work?.description_of_workdone}</p>
+              </div>
+              
+              <div className="mt-4 text-sm text-gray-500">
+                <span>{work?.company_location}</span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+    </section>
+    <About/>
+    <Works/>
+    <Contact/>
       </section>
 
       {/* Achievements Section */}
@@ -279,59 +336,7 @@ export default function Home() {
         </motion.div>
       </section> */}
 
-<section className="container mx-auto px-4 lg:px-8 py-16 sm:py-20">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="max-w-6xl mx-auto"
-      >
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-12 text-yellow-400">
-          Work Experience
-        </h2>
-        
-        <div className="space-y-8">
-          {work_experience.map((work, index) => (
-            <motion.div
-              key={work.id}
-              className="bg-gray-800 p-6 rounded-xl border-l-4 border-yellow-400"
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -5, transition: { type: "spring", stiffness: 300 } }}
-            >
-              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
-                <div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white">
-                    {work.company_name}
-                  </h3>
-                  <p className="text-gray-300">{work.description}</p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="inline-block px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-yellow-400/20 text-yellow-400">
-                    {work.status}
-                  </span>
-                  <span className="text-gray-400 text-sm sm:text-base">
-                    {work.tenure}
-                  </span>
-                </div>
-              </div>
-              
-              <div className="mt-4">
-                <p className="text-gray-400 italic">{work.what_company_does}</p>
-                <p className="text-gray-300 mt-3">{work.description_of_workdone}</p>
-              </div>
-              
-              <div className="mt-4 text-sm text-gray-500">
-                <span>{work.company_location}</span>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
-    </section>
+
 
       {/* Current Focus Section */}
       <section className="container mx-auto px-4 lg:px-8 py-16 sm:py-20">
@@ -406,9 +411,8 @@ export default function Home() {
         </motion.footer>
       </section>
     </div>
-    <About/>
-    <Works/>
-    <Contact/>
+
+   
     
     </div>
   );

@@ -31,56 +31,66 @@ interface AchievementCardProps {
   description: string;
   icon: string;
 }
+interface WorkExperience {
+  id: number,
+  company_name: string,
+  status: string,
+  website_url: string,
+  what_company_does: string,
+  company_location: string,
+  description: string,
+  tenure: string,
+  description_of_workdone: string
+}
 
-const work_experience = [
+const work_experience: WorkExperience[] = [
   {
     id: 1,
     company_name: 'VeendHQ',
     status: 'Onsite',
     website_url: '',
-    what_company_does: '',
+    what_company_does: 'FinTech startup building innovative payment solutions',
     company_location: 'Lagos',
-    description: '',
+    description: 'Frontend Engineer',
     tenure: 'June 2025 - present',
-    description_of_workdone: ''
+    description_of_workdone: 'Building scalable frontend systems with React and Next.js, implementing responsive UIs, and collaborating with cross-functional teams to deliver high-quality products.'
   },
   {
     id: 2,
     company_name: 'IAIIEA',
     status: 'Remote',
     website_url: '',
-    what_company_does: '',
+    what_company_does: 'AI research and development organization',
     company_location: 'Abuja',
-    description: '',
+    description: 'Frontend Developer',
     tenure: 'June 2024 - June 2025',
-    description_of_workdone: ''
+    description_of_workdone: 'Developed interactive dashboards and data visualization tools using React and D3.js. Implemented state management solutions and optimized application performance.'
   },
   {
     id: 3,
     company_name: 'ReconXI',
     status: 'Onsite',
     website_url: '',
-    what_company_does: '',
+    what_company_does: 'Cybersecurity and digital forensics firm',
     company_location: 'US',
-    description: '',
+    description: 'UI Developer',
     tenure: 'June 2025 - present',
-    description_of_workdone: ''
+    description_of_workdone: 'Created secure and accessible user interfaces for security tools. Worked closely with design and backend teams to implement complex workflows.'
   },
   {
     id: 4,
     company_name: 'HNG Internship',
     status: 'Remote',
     website_url: '',
-    what_company_does: '',
+    what_company_does: 'Tech education and talent development',
     company_location: 'Lagos',
-    description: '',
-    tenure: ' 2025 - present',
-    description_of_workdone: ''
+    description: 'Intern',
+    tenure: '2025 - present',
+    description_of_workdone: 'Participated in intensive frontend development program, built multiple projects, and collaborated with team members on real-world applications.'
   },
 ]
 const TECH_STACK = [
-  'React', 'Next.js', 'TypeScript', 'JavaScript',
-  'Gluestack', 'Redux', 'Zustand', 
+  'React.js', 'Next.js', 'TypeScript', 'JavaScript', 'Redux', 'Zustand', 
   'Tailwind CSS', 'Chakra UI', 'Git & GitHub', 
   'HTML5', 'CSS3', 'Figma', 'VS Code', 'Testing'
 ] as const;
@@ -252,7 +262,7 @@ export default function Home() {
       </section>
 
       {/* Achievements Section */}
-      <section className="container mx-auto px-4 lg:px-8 py-16 sm:py-20">
+      {/* <section className="container mx-auto px-4 lg:px-8 py-16 sm:py-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -267,7 +277,61 @@ export default function Home() {
             ))}
           </div>
         </motion.div>
-      </section>
+      </section> */}
+
+<section className="container mx-auto px-4 lg:px-8 py-16 sm:py-20">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="max-w-6xl mx-auto"
+      >
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-12 text-yellow-400">
+          Work Experience
+        </h2>
+        
+        <div className="space-y-8">
+          {work_experience.map((work, index) => (
+            <motion.div
+              key={work.id}
+              className="bg-gray-800 p-6 rounded-xl border-l-4 border-yellow-400"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -5, transition: { type: "spring", stiffness: 300 } }}
+            >
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
+                <div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white">
+                    {work.company_name}
+                  </h3>
+                  <p className="text-gray-300">{work.description}</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="inline-block px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-yellow-400/20 text-yellow-400">
+                    {work.status}
+                  </span>
+                  <span className="text-gray-400 text-sm sm:text-base">
+                    {work.tenure}
+                  </span>
+                </div>
+              </div>
+              
+              <div className="mt-4">
+                <p className="text-gray-400 italic">{work.what_company_does}</p>
+                <p className="text-gray-300 mt-3">{work.description_of_workdone}</p>
+              </div>
+              
+              <div className="mt-4 text-sm text-gray-500">
+                <span>{work.company_location}</span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+    </section>
 
       {/* Current Focus Section */}
       <section className="container mx-auto px-4 lg:px-8 py-16 sm:py-20">

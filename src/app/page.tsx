@@ -50,9 +50,9 @@ const work_experience: WorkExperience[] = [
     status: 'Onsite',
     website_url: 'https://veendhq.com/',
     what_company_does: 'FinTech startup building innovative payment solutions',
-    company_location: 'Lagos',
+    company_location: 'Lagos, Nigeria',
     description: 'Frontend Engineer',
-    tenure: 'June 2025 - present',
+    tenure: 'June 2024 - Present',
     description_of_workdone: 'Building scalable frontend systems with React and Next.js, implementing responsive UIs, and collaborating with cross-functional teams to deliver high-quality products.'
   },
   {
@@ -61,20 +61,20 @@ const work_experience: WorkExperience[] = [
     status: 'Remote',
     website_url: '',
     what_company_does: 'AI research and development organization',
-    company_location: 'Abuja',
+    company_location: 'Abuja, Nigeria',
     description: 'Frontend Developer',
-    tenure: 'June 2024 - June 2025',
+    tenure: 'Jan 2024 - May 2024',
     description_of_workdone: 'Developed interactive dashboards and data visualization tools using React and D3.js. Implemented state management solutions and optimized application performance.'
   },
   {
     id: 3,
     company_name: 'ReconXI',
-    status: 'Onsite',
+    status: 'Contract',
     website_url: '',
     what_company_does: 'Cybersecurity and digital forensics firm',
-    company_location: 'US',
+    company_location: 'United States',
     description: 'UI Developer',
-    tenure: 'June 2025 - present',
+    tenure: 'Aug 2023 - Dec 2023',
     description_of_workdone: 'Created secure and accessible user interfaces for security tools. Worked closely with design and backend teams to implement complex workflows.'
   },
   {
@@ -83,9 +83,9 @@ const work_experience: WorkExperience[] = [
     status: 'Remote',
     website_url: '',
     what_company_does: 'Tech education and talent development',
-    company_location: 'Lagos',
-    description: 'Intern',
-    tenure: '2025 - present',
+    company_location: 'Lagos, Nigeria',
+    description: 'Frontend Development Intern',
+    tenure: 'May 2023 - Jul 2023',
     description_of_workdone: 'Participated in intensive frontend development program, built multiple projects, and collaborated with team members on real-world applications.'
   },
 ]
@@ -260,56 +260,97 @@ export default function Home() {
           </div>
         </div>
 
-        <section className="">
+        <section className="py-16 sm:py-20">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="mx-auto"
+        className="max-w-4xl mx-auto"
       >
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-12 text-yellow-400">
-          My Work Experience
-        </h2>
+        <div className="text-center mb-16">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 text-yellow-400">
+            Work Experience
+          </h2>
+          <p className="text-gray-300 text-lg">
+            My professional journey and key contributions
+          </p>
+        </div>
         
-        <div className="space-y-8">
-          {work_experience.map((work, index) => (
-            <motion.div
-              key={work.id}
-              className="bg-gray-800 p-6 rounded-xl border-l-4 border-yellow-400"
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -5, transition: { type: "spring", stiffness: 300 } }}
-            >
-              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
-                <div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white">
-                    {work?.company_name}
-                  </h3>
-                  <p className="text-gray-300">{work?.description}</p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="inline-block px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-yellow-400/20 text-yellow-400">
-                    {work?.status}
-                  </span>
-                  <span className="text-gray-400 text-sm sm:text-base">
-                    {work?.tenure}
-                  </span>
-                </div>
-              </div>
-              
-              <div className="mt-4">
-                <p className="text-gray-400 italic">{work?.what_company_does}</p>
-                <p className="text-gray-300 mt-3">{work?.description_of_workdone}</p>
-              </div>
-              
-              <div className="mt-4 text-sm text-gray-500">
-                <span>{work?.company_location}</span>
-              </div>
-            </motion.div>
-          ))}
+        <div className="relative">
+          <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-yellow-400 via-yellow-400/50 to-transparent hidden md:block"></div>
+          
+          <div className="space-y-12">
+            {work_experience?.map((work, index) => (
+              <motion.div
+                key={work?.id}
+                className="relative"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+              >
+                <div className="absolute left-4 w-4 h-4 bg-yellow-400 rounded-full border-4 border-gray-900 hidden md:block"></div>
+                
+                <motion.div
+                  className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl shadow-2xl border border-gray-700 md:ml-16 hover:border-yellow-400/30 transition-all duration-300"
+                  whileHover={{ 
+                    y: -8, 
+                    boxShadow: "0 20px 40px rgba(0,0,0,0.3)",
+                    transition: { type: "spring", stiffness: 300 } 
+                  }}
+                >
+                  <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6">
+                    <div className="flex-1">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
+                        <h3 className="text-2xl font-bold text-white">
+                          {work?.company_name}
+                        </h3>
+                        {work?.website_url && (
+                          <a 
+                            href={work?.website_url} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="text-yellow-400 hover:text-yellow-300 text-sm underline"
+                          >
+                            Visit Website
+                          </a>
+                        )}
+                      </div>
+                      
+                      <div className="flex flex-wrap items-center gap-3 mb-4">
+                        <span className="bg-yellow-400/20 text-yellow-400 px-4 py-2 rounded-full text-sm font-semibold">
+                          {work?.description}
+                        </span>
+                        <span className="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">
+                          {work?.status}
+                        </span>
+                      </div>
+                      
+                      <p className="text-gray-400 italic text-sm mb-4 leading-relaxed">
+                        {work?.what_company_does}
+                      </p>
+                      
+                      <p className="text-gray-300 leading-relaxed mb-4">
+                        {work?.description_of_workdone}
+                      </p>
+                      
+                      <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400">
+                        <div className="flex items-center gap-2">
+                          <span className="w-2 h-2 bg-yellow-400 rounded-full"></span>
+                          <span>{work?.company_location}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
+                          <span className="font-medium">{work?.tenure}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </motion.div>
     </section>

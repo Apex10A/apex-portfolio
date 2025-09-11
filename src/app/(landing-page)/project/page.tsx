@@ -272,15 +272,15 @@ const Works = () => {
         </div>
 
         {/* Header */}
-        <div className="container mx-auto px-4 lg:px-8  relative z-10">
-          <div className="text-center mb-16">
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+          <div className=" mb-4">
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black mb-6 bg-gradient-to-r from-white via-yellow-400 to-white bg-clip-text text-transparent">
               My <span className="text-yellow-400">Works</span>
             </h1>
-            <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
-              Explore my latest projects and see how I bring ideas to life through code, creativity, and innovation.
+            <p className="text-lg sm:text-xl text-gray-300 max-w-3xl leading-relaxed">
+              Take a sneak peak into my projects and see how I bring ideas to life through code, creativity, and innovation.
             </p>
-            <div className="flex justify-center items-center space-x-4 text-sm text-gray-400">
+            {/* <div className="flex justify-center items-center space-x-4 text-sm text-gray-400">
               <span className="flex items-center">
                 <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
                 {projects.length} Projects
@@ -289,7 +289,7 @@ const Works = () => {
                 <div className="w-2 h-2 bg-yellow-400 rounded-full mr-2"></div>
                 {projects.filter(p => p.featured).length} Featured
               </span>
-            </div>
+            </div> */}
           </div>
 
           {/* Enhanced Controls */}

@@ -30,8 +30,8 @@ interface ContactFormProps {
 
 // Enhanced Contact Info Component
 const ContactInfo: React.FC<ContactInfoProps> = ({ icon, label, value, href, description }) => (
-  <div className="group relative overflow-hidden bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-sm p-6 rounded-2xl border border-gray-700 hover:border-yellow-400/50 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-yellow-400/10">
-    <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+  <div className="group relative overflow-hidden p-6 rounded-2xl border border-gray-700 hover:border-yellow-400/50 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-yellow-400/10">
+    <div className="absolute  opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
     <div className="relative z-10">
       <div className="flex items-start space-x-4">
         <div className="bg-gradient-to-br from-yellow-400 to-yellow-500 p-4 rounded-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
@@ -377,31 +377,20 @@ const Contact: React.FC = () => {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white relative overflow-hidden">
-        {/* Animated background elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-yellow-400 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-pulse"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-pulse"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-xl opacity-5 animate-pulse"></div>
-        </div>
-
+      <div className=" text-white relative overflow-hidden">
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-20 lg:pt-24 pb-16">
-          {/* Header Section */}
-          <div className="text-center mb-16 lg:mb-20">
+          <div className=" mb-16 lg:mb-20">
             <div className="inline-flex items-center justify-center p-2 bg-yellow-400/10 rounded-full mb-6">
               <Sparkles className="w-6 h-6 text-yellow-400 mr-2" />
               <span className="text-yellow-400 font-medium">Let's Create Something Amazing</span>
             </div>
-            
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black mb-6 bg-gradient-to-r from-white via-yellow-400 to-white bg-clip-text text-transparent">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black mb-6 bg-gradient-to-r from-white via-yellow-400 to-white bg-clip-text text-transparent">
               Let's <span className="text-yellow-400">Connect</span>
             </h1>
             
-            <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-sm sm:text-xl text-gray-300 max-w-3xl leading-relaxed opacity-[0.7]">
               Have a project in mind or just want to chat? I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
             </p>
-
-            {/* Availability Status */}
             <div className="inline-flex items-center justify-center mt-8 p-4 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-700">
               <div className={`w-3 h-3 rounded-full mr-3 ${
                 availabilityStatus.status === 'available' ? 'bg-green-400 animate-pulse' :
@@ -421,8 +410,7 @@ const Contact: React.FC = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 xl:grid-cols-5 gap-8 lg:gap-12 max-w-7xl mx-auto">
-            {/* Contact Information - Left Side */}
+          <div className="grid grid-cols-1 xl:grid-cols-5 gap-8 lg:gap-12 mx-auto">
             <div className="xl:col-span-2 space-y-6 lg:space-y-8">
               {/* Contact Info Cards */}
               <div className="space-y-6">
@@ -434,27 +422,10 @@ const Contact: React.FC = () => {
                   <ContactInfo key={info.label} {...info} />
                 ))}
               </div>
-
-              {/* Quick Stats */}
-              <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-sm p-6 lg:p-8 rounded-2xl border border-gray-700">
-                <h3 className="text-xl font-bold mb-6 flex items-center">
-                  <Clock className="w-5 h-5 text-yellow-400 mr-2" />
-                  Quick Stats
-                </h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="text-center p-4 bg-gray-800/50 rounded-xl">
-                    <div className="text-2xl font-bold text-yellow-400">1h</div>
-                    <div className="text-sm text-gray-400">Response Time</div>
-                  </div>
-                  <div className="text-center p-4 bg-gray-800/50 rounded-xl">
-                    <div className="text-2xl font-bold text-yellow-400">50+</div>
-                    <div className="text-sm text-gray-400">Projects Done</div>
-                  </div>
-                </div>
-              </div>
+            
 
               {/* Social Links */}
-              <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-sm p-6 lg:p-8 rounded-2xl border border-gray-700">
+              <div className="">
                 <h3 className="text-xl font-bold mb-6">Let's Connect</h3>
                 <p className="text-gray-300 mb-6">
                   Follow me on social media to stay updated with my latest projects and insights.
@@ -493,29 +464,6 @@ const Contact: React.FC = () => {
                   </div>
                 </div>
                 <ContactForm onSubmit={handleSubmit} status={status} />
-              </div>
-
-              {/* Additional CTA */}
-              <div className="mt-8 text-center">
-                <p className="text-gray-400 mb-4">
-                  Prefer a more direct approach?
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <a
-                    href="mailto:pafolabi740@gmail.com"
-                    className="inline-flex items-center justify-center px-6 py-3 bg-gray-800 hover:bg-gray-700 rounded-xl transition-colors border border-gray-600 hover:border-yellow-400"
-                  >
-                    <Mail className="w-5 h-5 mr-2" />
-                    Send Direct Email
-                  </a>
-                  <a
-                    href="tel:+2348160862773"
-                    className="inline-flex items-center justify-center px-6 py-3 bg-gray-800 hover:bg-gray-700 rounded-xl transition-colors border border-gray-600 hover:border-yellow-400"
-                  >
-                    <Phone className="w-5 h-5 mr-2" />
-                    Call Me
-                  </a>
-                </div>
               </div>
             </div>
           </div>

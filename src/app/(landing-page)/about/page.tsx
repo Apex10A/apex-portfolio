@@ -154,9 +154,9 @@ const About: React.FC = () => {
     <div className="">
       <div className="pt-24 pb-16">
         
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
+        <div className=" gap-12 items-center mb-20">
           <div className={`transform transition-all duration-700 ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'}`}>
-            <h1 className="text-4xl lg:text-6xl font-bold mb-6">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-20">
               My  <span className="text-yellow-400">Story</span>
             </h1>
             <p className="text-gray-300 text-lg mb-8 opacity-[0.9] leading-[30px]">
@@ -167,7 +167,7 @@ const About: React.FC = () => {
             </p>
             <div className="flex flex-wrap gap-4">
               <a href="#contact" className="px-8 py-3 bg-yellow-400 text-black rounded-lg font-medium hover:bg-yellow-500 transition-colors duration-300">
-                Get in Touch
+                Get in Touch with me
               </a>
               <a 
                 href="/Praise Afolabi.pdf" 
@@ -175,30 +175,30 @@ const About: React.FC = () => {
                 rel="noopener noreferrer"
                 className="px-8 py-3 border-2 border-yellow-400 text-yellow-400 rounded-lg font-medium hover:bg-yellow-400 hover:text-black transition-colors duration-300"
               >
-                Download CV
+                Download my CV
               </a>
             </div>
           </div>
           
-          <div className={`relative transform transition-all duration-700 delay-300 ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}`}>
+          <div className={`relative transform mt-4 transition-all duration-700 delay-300 ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}`}>
             <img
               src='/Praise Afolabi.jpg'
               alt="Praise Afolabi"
-              className="rounded-2xl w-full max-w-xl mx-auto shadow-2xl"
+              className="rounded-2xl w-full  shadow-2xl"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-2xl"></div>
           </div>
         </div>
 
    
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+        {/* <div className="grid grid-cols-1 md:grid-cols-3 w-full gap-8 mb-20">
           {stats.map((stat) => (
             <StatCard key={stat.label} {...stat} />
           ))}
-        </div>
+        </div> */}
 
         {/* Skills Section */}
-        <div className="mb-20">
+        {/* <div className="mb-20">
           <h2 className="text-3xl font-bold mb-12 text-center">My Expertise</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {skills.map((skill, index) => (
@@ -210,10 +210,10 @@ const About: React.FC = () => {
               />
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* Journey Section */}
-        <div className={`text-center max-w-3xl mx-auto transform transition-all duration-700 ${
+        {/* <div className={`text-center max-w-3xl mx-auto transform transition-all duration-700 ${
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
         }`}>
           <h2 className="text-3xl font-bold mb-6">My Journey</h2>
@@ -229,7 +229,7 @@ const About: React.FC = () => {
             View Full Resume
             <ChevronRight className="w-4 h-4" />
           </a>
-        </div>
+        </div> */}
       </div>
     </div>
          </Suspense>

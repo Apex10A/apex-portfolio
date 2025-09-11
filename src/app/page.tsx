@@ -4,8 +4,22 @@ import React from 'react';
 import Link from 'next/link';
 import { IconType } from 'react-icons';
 import { FaGithub, FaTwitter, FaLinkedin } from 'react-icons/fa';
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiJavascript,
+  SiRedux,
+  SiTailwindcss,
+  SiChakraui,
+  SiHtml5,
+  SiCss3,
+  SiFigma,
+  // SiVisualstudiocode,
+  SiTestinglibrary,
+  SiGit
+} from 'react-icons/si';
 import { motion } from 'framer-motion';
-import { div } from 'framer-motion/client';
 import Works from './(landing-page)/project/page';
 import Contact from './(landing-page)/contact/page';
 import About from './(landing-page)/about/page';
@@ -92,7 +106,7 @@ const work_experience: WorkExperience[] = [
 ]
 const TECH_STACK = [
   'React.js', 'Next.js', 'TypeScript', 'JavaScript', 'Redux', 'Zustand', 
-  'Tailwind CSS', 'Chakra UI', 'Git & GitHub', 
+  'Tailwind CSS', 'Chakra UI', 'Git & GitHub', 'React Native', 'NativeWind',
   'HTML5', 'CSS3', 'Figma', 'VS Code', 'Testing'
 ] as const;
 
@@ -184,6 +198,52 @@ const SocialLink = ({ href, icon: Icon, label }: SocialLinkProps) => (
     <Icon className="text-2xl sm:text-3xl" />
   </motion.a>
 );
+
+const getTechIcon = (name: string) => {
+  const iconClass = "text-xl";
+  const Safe = ({ children }: { children: React.ReactNode }) => (
+    <>{children ?? <span className={iconClass}>🔧</span>}</>
+  );
+  switch (name) {
+    case 'React.js':
+    case 'React Native':
+      return <Safe><SiReact className={iconClass + " text-cyan-400"} /></Safe>;
+    case 'Next.js':
+      return <Safe><SiNextdotjs className={iconClass} /></Safe>;
+    case 'TypeScript':
+      return <Safe><SiTypescript className={iconClass + " text-blue-500"} /></Safe>;
+    case 'JavaScript':
+      return <Safe><SiJavascript className={iconClass + " text-yellow-400"} /></Safe>;
+    case 'Redux':
+      return <Safe><SiRedux className={iconClass + " text-purple-400"} /></Safe>;
+    case 'Zustand':
+      return <span className={iconClass}>🐻</span>;
+    case 'Tailwind CSS':
+    case 'NativeWind':
+      return <Safe><SiTailwindcss className={iconClass + " text-sky-400"} /></Safe>;
+    case 'Chakra UI':
+      return <Safe><SiChakraui className={iconClass + " text-teal-300"} /></Safe>;
+    case 'Git & GitHub':
+      return (
+        <span className="flex items-center gap-1">
+          <SiGit className={iconClass + " text-orange-500"} />
+          <FaGithub className={iconClass} />
+        </span>
+      );
+    case 'HTML5':
+      return <Safe><SiHtml5 className={iconClass + " text-orange-500"} /></Safe>;
+    case 'CSS3':
+      return <Safe><SiCss3 className={iconClass + " text-blue-400"} /></Safe>;
+    case 'Figma':
+      return <Safe><SiFigma className={iconClass} /></Safe>;
+    // case 'VS Code':
+    //   return <Safe><SiVisualstudiocode className={iconClass + " text-blue-500"} /></Safe>;
+    case 'Testing':
+      return <Safe><SiTestinglibrary className={iconClass + " text-red-400"} /></Safe>;
+    default:
+      return <span className={iconClass}>🔧</span>;
+  }
+};
 
 export default function Home() {
   return (
@@ -392,26 +452,22 @@ export default function Home() {
         >
           Tech Stack
         </motion.h2>
-        <div className="relative">
+        <div className="relative marquee">
           {/* gradient edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-black to-transparent pointer-events-none"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-black to-transparent pointer-events-none"></div>
+          <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-gray-900 to-transparent pointer-events-none z-10"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-gray-900 to-transparent pointer-events-none z-10"></div>
           <div className="overflow-hidden">
-            <motion.div
-              className="flex gap-4 sm:gap-6 whitespace-nowrap"
-              initial={{ x: 0 }}
-              animate={{ x: "-50%" }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            >
+            <div className="marquee-track gap-4 sm:gap-6">
               {[...TECH_STACK, ...TECH_STACK].map((tech, index) => (
                 <div
                   key={`${tech}-${index}`}
-                  className="bg-gray-800 px-4 py-3 rounded-lg text-center min-w-[140px] hover:bg-gray-700"
+                  className="bg-gray-800/90 px-4 py-3 rounded-lg text-center min-w-[160px] flex items-center justify-center gap-2 hover:bg-gray-700 transition-colors"
                 >
+                  {getTechIcon(tech)}
                   <span className="text-base sm:text-lg font-semibold">{tech}</span>
                 </div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

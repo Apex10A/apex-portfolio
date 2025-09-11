@@ -54,6 +54,35 @@ const Works = () => {
       featured: true,
       status: "Live"
     },
+     {
+      id: 9,
+      title: "OtaWatch",
+      description: "Collaborative project developed during HNG Internship, focusing on creating innovative solutions in the education technology space.",
+      image: "/otawatch.png",
+      category: "professional",
+      tech: ["Next.js", "TailwindCSS", "Typescript", "Stripe", "Tanstack", "Framer Motion", "AI Algorithms", "OpenAI API"],
+      year: "July - August 2024",
+      role: "Frontend Developer",
+      liveLink: "https://aiforhomework.com/",
+      githubLink: "https://github.com/hngprojects/homeworkai_fe",
+      featured: true,
+      status: "Live"
+    },
+     {
+      id: 10,
+      title: "OtaWatch",
+      description: "Collaborative project developed during HNG Internship, focusing on creating innovative solutions in the education technology space.",
+      image: "/ohana.png",
+      category: "professional",
+      tech: ["Next.js", "TailwindCSS", "Typescript", "Stripe", "Tanstack", "Framer Motion", "AI Algorithms", "OpenAI API"],
+      year: "July - August 2024",
+      role: "Frontend Developer",
+      liveLink: "https://aiforhomework.com/",
+      githubLink: "https://github.com/hngprojects/homeworkai_fe",
+      featured: true,
+      status: "Live"
+    },
+
     {
       id: 1,
       title: "Drip Republic",

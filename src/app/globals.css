@@ -33,3 +33,25 @@ body {
     text-wrap: balance;
   }
 }
+
+/* Infinite marquee for tech stack */
+.marquee {
+  position: relative;
+}
+.marquee .marquee-track {
+  display: flex;
+  align-items: center;
+  width: max-content; /* allow repeating content to flow */
+  animation: marquee-scroll 20s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused; /* pause on hover */
+}
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

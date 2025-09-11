@@ -1,7 +1,7 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import { Suspense } from 'react';
-import { Search, ExternalLink, Github, Calendar, User, Code, Filter, X, Eye, Star } from 'lucide-react';
+import { Search, ExternalLink, Github, Calendar, User, Code, Filter, X, Eye, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface Project {
   id: number;
@@ -36,6 +36,8 @@ const Works = () => {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [currentIndex, setCurrentIndex] = useState<number>(0); // carousel index
+  const [isAutoPlay, setIsAutoPlay] = useState<boolean>(true); // toggle autoplay
 
   const projects: Project[] = [
     {
@@ -145,12 +147,29 @@ const Works = () => {
       return a.title.localeCompare(b.title);
     });
 
+  // Auto-play carousel: advance every 4s, pause on manual nav for 8s
+  useEffect(() => {
+    if (!isAutoPlay || filteredProjects.length === 0) return;
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % filteredProjects.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [isAutoPlay, filteredProjects.length]);
+
   const categories = [
     { id: 'all', label: 'All Projects', count: projects.length },
     { id: 'professional', label: 'Professional', count: projects.filter(p => p.category === 'professional').length },
     { id: 'web', label: 'Web Apps', count: projects.filter(p => p.category === 'web').length },
     { id: 'app', label: 'Applications', count: projects.filter(p => p.category === 'app').length }
   ];
+
+  // Reset/Clamp currentIndex when filtered list changes
+  useEffect(() => {
+    if (filteredProjects.length === 0) return;
+    if (currentIndex >= filteredProjects.length) {
+      setCurrentIndex(0);
+    }
+  }, [filteredProjects.length]);
 
   const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => (
     <div className="">
@@ -245,7 +264,7 @@ const Works = () => {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <div className="bg-gradient-to-br from-gray-900 via-black to-gray-900 min-h-screen text-white relative overflow-hidden">
+      <div className=" min-h-screen text-white relative overflow-hidden">
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-yellow-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
@@ -253,9 +272,9 @@ const Works = () => {
         </div>
 
         {/* Header */}
-        <div className="container mx-auto px-4 lg:px-8 pt-20 lg:pt-24 relative z-10">
+        <div className="container mx-auto px-4 lg:px-8  relative z-10">
           <div className="text-center mb-16">
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black mb-6 bg-gradient-to-r from-white via-yellow-400 to-white bg-clip-text text-transparent">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black mb-6 bg-gradient-to-r from-white via-yellow-400 to-white bg-clip-text text-transparent">
               My <span className="text-yellow-400">Works</span>
             </h1>
             <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
@@ -277,7 +296,7 @@ const Works = () => {
           <div className="mb-12 space-y-6">
             {/* Search and View Controls */}
             <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
-              <div className="relative flex-1 max-w-md">
+              {/* <div className="relative flex-1 max-w-md">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                 <input
                   type="text"
@@ -286,9 +305,9 @@ const Works = () => {
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="w-full pl-10 pr-4 py-3 bg-gray-800 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-20 transition-all"
                 />
-              </div>
+              </div> */}
               
-              <div className="flex items-center space-x-4">
+              {/* <div className="flex items-center space-x-4">
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
@@ -305,11 +324,11 @@ const Works = () => {
                 >
                   <Filter className="w-5 h-5" />
                 </button>
-              </div>
+              </div> */}
             </div>
 
             {/* Category Filters */}
-            <div className="flex flex-wrap justify-center gap-3">
+            {/* <div className="flex flex-wrap justify-center gap-3">
               {categories.map((category) => (
                 <button
                   key={category.id}
@@ -324,7 +343,7 @@ const Works = () => {
                   <span className="ml-2 text-sm opacity-75">({category.count})</span>
                 </button>
               ))}
-            </div>
+            </div> */}
           </div>
 
           {/* Results Info */}
@@ -336,115 +355,155 @@ const Works = () => {
           </div>
         </div>
 
-        {/* Projects Grid */}
+        {/* Projects Carousel */}
         <div className="container mx-auto px-4 lg:px-8 pb-20 relative z-10">
-          <div className={`grid gap-8 ${
-            viewMode === 'grid' 
-              ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3' 
-              : 'grid-cols-1 max-w-4xl mx-auto'
-          }`}>
-            {filteredProjects.map((project, index) => (
+          <div className="relative">
+            {/* Track */}
+            <div className="overflow-hidden rounded-2xl">
               <div
-                key={project.id}
-                className={`group bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700 hover:border-yellow-400/50 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-yellow-400/10 ${
-                  project.featured ? 'ring-2 ring-yellow-400/30' : ''
-                }`}
-                style={{ animationDelay: `${index * 100}ms` }}
+                className="flex transition-transform duration-700 ease-out"
+                style={{ transform: `translateX(-${currentIndex * 100}%)` }}
               >
-                <div className="relative overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  
-                  {/* Floating Action Buttons */}
-                  <div className="absolute inset-0 flex items-center justify-center space-x-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
-                    <button
-                      onClick={() => setSelectedProject(project)}
-                      className="bg-white/20 backdrop-blur-sm hover:bg-yellow-400 hover:text-black text-white p-3 rounded-full transition-all duration-300 transform hover:scale-110"
+                {filteredProjects.map((project) => (
+                  <div key={project.id} className="min-w-full px-1">
+                    <div
+                      className={`group bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700 hover:border-yellow-400/50 transition-all duration-500 ${
+                        project.featured ? 'ring-2 ring-yellow-400/30' : ''
+                      }`}
                     >
-                      <Eye className="w-5 h-5" />
-                    </button>
-                    <a
-                      href={project.liveLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-white/20 backdrop-blur-sm hover:bg-yellow-400 hover:text-black text-white p-3 rounded-full transition-all duration-300 transform hover:scale-110"
-                    >
-                      <ExternalLink className="w-5 h-5" />
-                    </a>
-                    <a
-                      href={project.githubLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-white/20 backdrop-blur-sm hover:bg-gray-700 text-white p-3 rounded-full transition-all duration-300 transform hover:scale-110"
-                    >
-                      <Github className="w-5 h-5" />
-                    </a>
-                  </div>
+                      <div className="relative overflow-hidden">
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-72 md:h-[22rem] object-cover group-hover:scale-105 transition-transform duration-700"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        {/* Floating Action Buttons */}
+                        <div className="absolute inset-0 flex items-center justify-center space-x-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
+                          <button
+                            onClick={() => setSelectedProject(project)}
+                            className="bg-white/20 backdrop-blur-sm hover:bg-yellow-400 hover:text-black text-white p-3 rounded-full transition-all duration-300 transform hover:scale-110"
+                          >
+                            <Eye className="w-5 h-5" />
+                          </button>
+                          <a
+                            href={project.liveLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-white/20 backdrop-blur-sm hover:bg-yellow-400 hover:text-black text-white p-3 rounded-full transition-all duration-300 transform hover:scale-110"
+                          >
+                            <ExternalLink className="w-5 h-5" />
+                          </a>
+                          <a
+                            href={project.githubLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-white/20 backdrop-blur-sm hover:bg-gray-700 text-white p-3 rounded-full transition-all duration-300 transform hover:scale-110"
+                          >
+                            <Github className="w-5 h-5" />
+                          </a>
+                        </div>
+                        {/* Status Badge */}
+                        <div className="absolute top-4 right-4">
+                          <span className="bg-green-500 text-white px-3 py-1 rounded-full text-xs font-medium">
+                            {project.status}
+                          </span>
+                        </div>
+                        {/* Featured Badge */}
+                        {project.featured && (
+                          <div className="absolute top-4 left-4">
+                            <span className="bg-yellow-400 text-black px-3 py-1 rounded-full text-xs font-bold flex items-center">
+                              <Star className="w-3 h-3 mr-1" />
+                              Featured
+                            </span>
+                          </div>
+                        )}
+                      </div>
 
-                  {/* Status Badge */}
-                  <div className="absolute top-4 right-4">
-                    <span className="bg-green-500 text-white px-3 py-1 rounded-full text-xs font-medium">
-                      {project.status}
-                    </span>
-                  </div>
-
-                  {/* Featured Badge */}
-                  {project.featured && (
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-yellow-400 text-black px-3 py-1 rounded-full text-xs font-bold flex items-center">
-                        <Star className="w-3 h-3 mr-1" />
-                        Featured
-                      </span>
+                      <div className="p-6">
+                        <div className="flex justify-between items-start mb-4">
+                          <h3 className="text-xl font-bold group-hover:text-yellow-400 transition-colors">
+                            {project.title}
+                          </h3>
+                          {project.year && (
+                            <span className="text-xs text-yellow-400 bg-gray-700 px-2 py-1 rounded-full flex items-center">
+                              <Calendar className="w-3 h-3 mr-1" />
+                              {project.year}
+                            </span>
+                          )}
+                        </div>
+                        {project.role && (
+                          <p className="text-sm text-gray-400 mb-3 flex items-center">
+                            <User className="w-4 h-4 mr-1" />
+                            {project.role}
+                          </p>
+                        )}
+                        <p className="text-gray-300 mb-6 leading-relaxed line-clamp-3">
+                          {project.description}
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {project.tech.slice(0, 4).map((tech, index) => (
+                            <span
+                              key={index}
+                              className="px-3 py-1 bg-gray-700/70 hover:bg-yellow-400/20 hover:text-yellow-400 rounded-full text-xs transition-colors border border-gray-600"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                          {project.tech.length > 4 && (
+                            <span className="px-3 py-1 bg-gray-700/70 rounded-full text-xs text-gray-400">
+                              +{project.tech.length - 4} more
+                            </span>
+                          )}
+                        </div>
+                      </div>
                     </div>
-                  )}
-                </div>
-
-                <div className="p-6">
-                  <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-bold group-hover:text-yellow-400 transition-colors">
-                      {project.title}
-                    </h3>
-                    {project.year && (
-                      <span className="text-xs text-yellow-400 bg-gray-700 px-2 py-1 rounded-full flex items-center">
-                        <Calendar className="w-3 h-3 mr-1" />
-                        {project.year}
-                      </span>
-                    )}
                   </div>
-                  
-                  {project.role && (
-                    <p className="text-sm text-gray-400 mb-3 flex items-center">
-                      <User className="w-4 h-4 mr-1" />
-                      {project.role}
-                    </p>
-                  )}
-                  
-                  <p className="text-gray-300 mb-6 leading-relaxed line-clamp-3">
-                    {project.description}
-                  </p>
-                  
-                  <div className="flex flex-wrap gap-2">
-                    {project.tech.slice(0, 4).map((tech, index) => (
-                      <span
-                        key={index}
-                        className="px-3 py-1 bg-gray-700/70 hover:bg-yellow-400/20 hover:text-yellow-400 rounded-full text-xs transition-colors border border-gray-600"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                    {project.tech.length > 4 && (
-                      <span className="px-3 py-1 bg-gray-700/70 rounded-full text-xs text-gray-400">
-                        +{project.tech.length - 4} more
-                      </span>
-                    )}
-                  </div>
-                </div>
+                ))}
               </div>
-            ))}
+            </div>
+
+            {/* Navigation Controls */}
+            <button
+              aria-label="Previous"
+              onClick={() => {
+                setIsAutoPlay(false);
+                setCurrentIndex((prev) => (prev - 1 + filteredProjects.length) % filteredProjects.length);
+                setTimeout(() => setIsAutoPlay(true), 8000);
+              }}
+              className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 bg-gray-900/60 hover:bg-gray-800 text-white p-3 rounded-full border border-gray-700 shadow-md"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              aria-label="Next"
+              onClick={() => {
+                setIsAutoPlay(false);
+                setCurrentIndex((prev) => (prev + 1) % filteredProjects.length);
+                setTimeout(() => setIsAutoPlay(true), 8000);
+              }}
+              className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 bg-gray-900/60 hover:bg-gray-800 text-white p-3 rounded-full border border-gray-700 shadow-md"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+
+            {/* Dots */}
+            <div className="flex justify-center gap-2 mt-6">
+              {filteredProjects.map((_, idx) => (
+                <button
+                  key={idx}
+                  aria-label={`Go to slide ${idx + 1}`}
+                  onClick={() => {
+                    setIsAutoPlay(false);
+                    setCurrentIndex(idx);
+                    setTimeout(() => setIsAutoPlay(true), 8000);
+                  }}
+                  className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                    idx === currentIndex ? 'bg-yellow-400' : 'bg-gray-600 hover:bg-gray-500'
+                  }`}
+                />
+              ))}
+            </div>
           </div>
 
           {/* No Results */}

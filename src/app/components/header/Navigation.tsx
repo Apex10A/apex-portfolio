@@ -31,6 +31,7 @@ const NAV_ITEMS: NavItem[] = [
     // ]
   },
   { path: '/project', label: 'Works' },
+  { path: '/anime', label: 'Anime API' },
   { path: '/blog', label: 'Blog' },
   { path: '/contact', label: 'Contact' },
   { path: '/contributions', label: 'Contributions' }

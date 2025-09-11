@@ -11,6 +11,7 @@ import Contact from './(landing-page)/contact/page';
 import About from './(landing-page)/about/page';
 
 interface StatCardProps {
+  icon?: React.ReactNode;
   count: string;
   label: string;
 }
@@ -59,7 +60,7 @@ const work_experience: WorkExperience[] = [
     id: 2,
     company_name: 'IAIIEA',
     status: 'Remote',
-    website_url: '',
+    website_url: 'https://iaiiea.org/',
     what_company_does: 'AI research and development organization',
     company_location: 'Abuja, Nigeria',
     description: 'Frontend Developer',
@@ -70,7 +71,7 @@ const work_experience: WorkExperience[] = [
     id: 3,
     company_name: 'ReconXI',
     status: 'Contract',
-    website_url: '',
+    website_url: 'https://reconxi.com/',
     what_company_does: 'Cybersecurity and digital forensics firm',
     company_location: 'United States',
     description: 'UI Developer',
@@ -81,7 +82,7 @@ const work_experience: WorkExperience[] = [
     id: 4,
     company_name: 'HNG Internship',
     status: 'Remote',
-    website_url: '',
+    website_url: 'https://hng.tech/',
     what_company_does: 'Tech education and talent development',
     company_location: 'Lagos, Nigeria',
     description: 'Frontend Development Intern',
@@ -126,7 +127,7 @@ const SOCIAL_LINKS: SocialLinkProps[] = [
   // { href: 'https://www.linkedin.com/in/praise-afolabi-67b1292b5/', icon: FaLinkedin, label: 'LinkedIn' },
 ];
 
-const StatCard = ({ count, label }: StatCardProps) => (
+const StatCard = ({ count, label, icon }: StatCardProps) => (
   <motion.div 
     className="bg-gray-800 p-4 sm:p-6 rounded-lg text-center"
     initial={{ opacity: 0, y: 20 }}
@@ -135,6 +136,7 @@ const StatCard = ({ count, label }: StatCardProps) => (
     transition={{ duration: 0.5 }}
     whileHover={{ y: -5, transition: { type: "spring", stiffness: 300 } }}
   >
+    <h3>{icon}</h3>
     <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-yellow-400">{count}</h3>
     <p className="text-gray-300 mt-2 text-sm sm:text-base">{label}</p>
   </motion.div>
@@ -260,7 +262,8 @@ export default function Home() {
           </div>
         </div>
 
-        <section className="py-16 sm:py-20">
+        <div className='grid grid-cols-2 gap-8'>
+          <section className="py-16 sm:py-20">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -268,7 +271,7 @@ export default function Home() {
         transition={{ duration: 0.6 }}
         className="max-w-4xl mx-auto"
       >
-        <div className="text-center mb-16">
+        <div className=" mb-16">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 text-yellow-400">
             Work Experience
           </h2>
@@ -355,6 +358,7 @@ export default function Home() {
       </motion.div>
     </section>
     <About/>
+        </div>
     <Works/>
     <Contact/>
       </section>
@@ -402,7 +406,6 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Tech Stack Section */}
       <section className="container mx-auto px-4 lg:px-8 py-16 sm:py-20">
         <motion.h2 
           className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12"
@@ -447,7 +450,7 @@ export default function Home() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
-        >
+        > 
           <p>© {new Date().getFullYear()} Praise Afolabi. All Rights Reserved.</p>
         </motion.footer>
       </section>

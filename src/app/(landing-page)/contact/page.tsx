@@ -412,7 +412,6 @@ const Contact: React.FC = () => {
 
           <div className="grid grid-cols-1 xl:grid-cols-5 gap-8 lg:gap-12 mx-auto">
             <div className="xl:col-span-2 space-y-6 lg:space-y-8">
-              {/* Contact Info Cards */}
               <div className="space-y-6">
                 <h2 className="text-2xl lg:text-3xl font-bold mb-6 flex items-center">
                   <MessageSquare className="w-7 h-7 text-yellow-400 mr-3" />
@@ -424,7 +423,6 @@ const Contact: React.FC = () => {
               </div>
             
 
-              {/* Social Links */}
               <div className="">
                 <h3 className="text-xl font-bold mb-6">Let's Connect</h3>
                 <p className="text-gray-300 mb-6">
@@ -449,8 +447,6 @@ const Contact: React.FC = () => {
                 </div>
               </div>
             </div>
-
-            {/* Contact Form - Right Side */}
             <div className="xl:col-span-3">
               <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-sm p-6 lg:p-8 rounded-2xl border border-gray-700 shadow-2xl">
                 <div className="flex items-center justify-between mb-8">

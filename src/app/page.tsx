@@ -52,7 +52,7 @@ const work_experience: WorkExperience[] = [
     website_url: 'https://veendhq.com/',
     what_company_does: 'FinTech startup building innovative payment solutions',
     company_location: 'Lagos, Nigeria',
-    description: 'Frontend Engineer',
+    description: 'Frontend Engineer & Mobile Developer',
     tenure: 'June 2024 - Present',
     description_of_workdone: 'Building scalable frontend systems with React and Next.js, implementing responsive UIs, and collaborating with cross-functional teams to deliver high-quality products.'
   },
@@ -382,30 +382,6 @@ export default function Home() {
       </section> */}
 
 
-
-      {/* Current Focus Section */}
-      <section className="container mx-auto px-4 lg:px-8 py-16 sm:py-20">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto text-center"
-        >
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8">What I'm Working On</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-gray-800 p-6 rounded-xl">
-              <h3 className="text-xl font-semibold mb-4 text-yellow-400">Current Role</h3>
-              <p className="text-gray-300">Building frontend features at VeendHQ, focusing on creating scalable and maintainable systems.</p>
-            </div>
-            <div className="bg-gray-800 p-6 rounded-xl">
-              <h3 className="text-xl font-semibold mb-4 text-yellow-400">Learning Goals</h3>
-              <p className="text-gray-300">Improving problem-solving skills, mastering testing, and implementing clean architecture patterns.</p>
-            </div>
-          </div>
-        </motion.div>
-      </section>
-
       <section className="container mx-auto px-4 lg:px-8 py-16 sm:py-20">
         <motion.h2 
           className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12"
@@ -416,10 +392,27 @@ export default function Home() {
         >
           Tech Stack
         </motion.h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-          {TECH_STACK.map((tech, index) => (
-            <TechStackItem key={tech} name={tech} index={index} />
-          ))}
+        <div className="relative">
+          {/* gradient edges */}
+          <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-black to-transparent pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-black to-transparent pointer-events-none"></div>
+          <div className="overflow-hidden">
+            <motion.div
+              className="flex gap-4 sm:gap-6 whitespace-nowrap"
+              initial={{ x: 0 }}
+              animate={{ x: "-50%" }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            >
+              {[...TECH_STACK, ...TECH_STACK].map((tech, index) => (
+                <div
+                  key={`${tech}-${index}`}
+                  className="bg-gray-800 px-4 py-3 rounded-lg text-center min-w-[140px] hover:bg-gray-700"
+                >
+                  <span className="text-base sm:text-lg font-semibold">{tech}</span>
+                </div>
+              ))}
+            </motion.div>
+          </div>
         </div>
       </section>
 

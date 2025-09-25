@@ -7,7 +7,7 @@ import Header from '@/app/components/header/Navigation';
 const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <div className="main-layout">
-      <Header />
+      {/* <Header /> */}
       <main>{children}</main>
       {/* <Footer /> */}
     </div>

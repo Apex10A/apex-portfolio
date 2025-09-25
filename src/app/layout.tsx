@@ -28,7 +28,7 @@ export default function RootLayout({
      <body className={inter.className}>
      <Suspense fallback={<Loading />}>
        <LoadingProvider>
-           <Navigation />
+           {/* <Navigation /> */}
            {children}
            </LoadingProvider>
          </Suspense>

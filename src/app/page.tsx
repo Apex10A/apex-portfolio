@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { IconType } from 'react-icons';
 import { FaGithub, FaTwitter, FaLinkedin } from 'react-icons/fa';
@@ -19,10 +19,9 @@ import {
   SiTestinglibrary,
   SiGit
 } from 'react-icons/si';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Works from './(landing-page)/project/page';
 import Contact from './(landing-page)/contact/page';
-import About from './(landing-page)/about/page';
 
 interface StatCardProps {
   icon?: React.ReactNode;
@@ -113,7 +112,7 @@ const TECH_STACK = [
 const STATS: StatCardProps[] = [
   { count: '2+', label: 'Professional work Experience' },
   { count: '10+', label: 'Projects Completed' },
-  { count: '5+', label: 'Happy Clients' },
+  { count: '10+', label: 'Happy Clients' },
   { count: '3+', label: 'Awards' },
 ];
 
@@ -246,6 +245,14 @@ const getTechIcon = (name: string) => {
 };
 
 export default function Home() {
+  const [selectedWorkId, setSelectedWorkId] = useState<number | null>(work_experience[0]?.id ?? null);
+
+  const selectedWork = work_experience.find((work) => work.id === selectedWorkId);
+
+  const handleSelectWork = (id: number) => {
+    setSelectedWorkId(id);
+  };
+
   return (
     <div>
       <div className="bg-gradient-to-b from-gray-900 to-black min-h-screen text-white overflow-x-hidden">
@@ -272,7 +279,7 @@ export default function Home() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Hello, I'm <span className="text-yellow-400">Praise Afolabi</span>
+              Hi, I'm <span className="text-yellow-400">Praise Afolabi</span>
             </motion.h1>
             
             <motion.p 
@@ -281,9 +288,7 @@ export default function Home() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              A Product Developer passionate about building modern, scalable, and user-friendly web applications. 
-              I transform UI designs into clean, functional code while solving 
-              real-world problems. I just don't code, I craft experiences that make a difference.
+              I’m a Product Developer passionate about building modern, scalable, and user-friendly web applications. I do beyond transforming designs into clean, functional code and I focus on solving real business problems and driving innovation. I don’t just code interfaces, I build experiences that create impact and help products grow.
             </motion.p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -322,127 +327,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className='grid grid-cols-2 gap-8'>
-          <section className="py-16 sm:py-20">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="max-w-4xl mx-auto"
-      >
-        <div className=" mb-16">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 text-yellow-400">
-            Work Experience
-          </h2>
-          <p className="text-gray-300 text-lg">
-            My professional journey and key contributions
-          </p>
-        </div>
-        
-        <div className="relative">
-          <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-yellow-400 via-yellow-400/50 to-transparent hidden md:block"></div>
-          
-          <div className="space-y-12">
-            {work_experience?.map((work, index) => (
-              <motion.div
-                key={work?.id}
-                className="relative"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-              >
-                <div className="absolute left-4 w-4 h-4 bg-yellow-400 rounded-full border-4 border-gray-900 hidden md:block"></div>
-                
-                <motion.div
-                  className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl shadow-2xl border border-gray-700 md:ml-16 hover:border-yellow-400/30 transition-all duration-300"
-                  whileHover={{ 
-                    y: -8, 
-                    boxShadow: "0 20px 40px rgba(0,0,0,0.3)",
-                    transition: { type: "spring", stiffness: 300 } 
-                  }}
-                >
-                  <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6">
-                    <div className="flex-1">
-                      <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
-                        <h3 className="text-2xl font-bold text-white">
-                          {work?.company_name}
-                        </h3>
-                        {work?.website_url && (
-                          <a 
-                            href={work?.website_url} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="text-yellow-400 hover:text-yellow-300 text-sm underline"
-                          >
-                            Visit Website
-                          </a>
-                        )}
-                      </div>
-                      
-                      <div className="flex flex-wrap items-center gap-3 mb-4">
-                        <span className="bg-yellow-400/20 text-yellow-400 px-4 py-2 rounded-full text-sm font-semibold">
-                          {work?.description}
-                        </span>
-                        <span className="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">
-                          {work?.status}
-                        </span>
-                      </div>
-                      
-                      <p className="text-gray-400 italic text-sm mb-4 leading-relaxed">
-                        {work?.what_company_does}
-                      </p>
-                      
-                      <p className="text-gray-300 leading-relaxed mb-4">
-                        {work?.description_of_workdone}
-                      </p>
-                      
-                      <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400">
-                        <div className="flex items-center gap-2">
-                          <span className="w-2 h-2 bg-yellow-400 rounded-full"></span>
-                          <span>{work?.company_location}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
-                          <span className="font-medium">{work?.tenure}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.div>
-    </section>
-    <About/>
-        </div>
-    <Works/>
-    <Contact/>
-      </section>
-
-      {/* Achievements Section */}
-      {/* <section className="container mx-auto px-4 lg:px-8 py-16 sm:py-20">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className=" mx-auto"
-        >
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-12">Professional Achievements</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {ACHIEVEMENTS.map((achievement, index) => (
-              <AchievementCard key={index} {...achievement} />
-            ))}
-          </div>
-        </motion.div>
-      </section> */}
-
-
-      <section className="container mx-auto px-4 lg:px-8 py-16 sm:py-20">
+         <section className="container mx-auto ">
         <motion.h2 
           className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12"
           initial={{ opacity: 0, y: 20 }}
@@ -471,6 +356,162 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+        <div className='grid md:grid-cols-2 md:gap-8 '>
+          <section className="py-16 sm:py-20">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="max-w-4xl mx-auto"
+      >
+        <div className=" mb-16">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 text-yellow-400">
+            Work Experience
+          </h2>
+          <p className="text-gray-300 text-lg">
+            My professional journey and key contributions
+          </p>
+        </div>
+        
+        <div className="relative">
+          <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-yellow-400 via-yellow-400/50 to-transparent hidden md:block"></div>
+          
+          <div className="space-y-12">
+            {work_experience?.map((work, index) => {
+              const isExpanded = expandedWork === work.id;
+              return (
+                <motion.div
+                  key={work?.id}
+                  className="relative"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                >
+                  <div className="absolute left-4 w-4 h-4 bg-yellow-400 rounded-full border-4 border-gray-900 hidden md:block"></div>
+
+                  <motion.div
+                    className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl shadow-2xl border border-gray-700 md:ml-16 hover:border-yellow-400/30 transition-all duration-300 cursor-pointer"
+                    whileHover={{
+                      y: -8,
+                      boxShadow: "0 20px 40px rgba(0,0,0,0.3)",
+                      transition: { type: "spring", stiffness: 300 }
+                    }}
+                    onClick={() => toggleExpandedWork(work.id)}
+                  >
+                    <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6">
+                      <div className="flex-1">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
+                          <h3 className="text-2xl font-bold text-white">
+                            {work?.company_name}
+                          </h3>
+                          {work?.website_url && (
+                            <a
+                              href={work?.website_url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-yellow-400 hover:text-yellow-300 text-sm underline"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              Visit Website
+                            </a>
+                          )}
+                        </div>
+
+                        <div className="flex flex-wrap items-center gap-3 mb-4">
+                          <span className="bg-yellow-400/20 text-yellow-400 px-4 py-2 rounded-full text-sm font-semibold">
+                            {work?.description}
+                          </span>
+                          <span className="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">
+                            {work?.status}
+                          </span>
+                        </div>
+
+                        {isExpanded && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="overflow-hidden"
+                          >
+                            <p className="text-gray-400 italic text-sm mb-4 leading-relaxed">
+                              {work?.what_company_does}
+                            </p>
+
+                            <p className="text-gray-300 leading-relaxed mb-4">
+                              {work?.description_of_workdone}
+                            </p>
+                          </motion.div>
+                        )}
+
+                        <div className="flex flex-wrap items-center justify-between gap-4">
+                          <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400">
+                            <div className="flex items-center gap-2">
+                              <span className="w-2 h-2 bg-yellow-400 rounded-full"></span>
+                              <span>{work?.company_location}</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
+                              <span className="font-medium">{work?.tenure}</span>
+                            </div>
+                          </div>
+
+                          <motion.button
+                            className="bg-yellow-400 text-black px-4 py-2 rounded-full text-sm font-semibold hover:bg-yellow-300 transition-colors duration-300 flex items-center gap-2"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleExpandedWork(work.id);
+                            }}
+                          >
+                            {isExpanded ? 'View Less' : 'View More'}
+                            <motion.span
+                              animate={{ rotate: isExpanded ? 180 : 0 }}
+                              transition={{ duration: 0.3 }}
+                            >
+                              ▼
+                            </motion.span>
+                          </motion.button>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </motion.div>
+    </section>
+        </div>
+    <Works/>
+    <Contact/>
+      </section>
+
+      {/* Achievements Section */}
+      {/* <section className="container mx-auto px-4 lg:px-8 py-16 sm:py-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className=" mx-auto"
+        >
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-12">Professional Achievements</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {ACHIEVEMENTS.map((achievement, index) => (
+              <AchievementCard key={index} {...achievement} />
+            ))}
+          </div>
+        </motion.div>
+      </section> */}
+
+
+     
 
       {/* Social Links & Footer */}
       <section className="container mx-auto px-4 lg:px-8 pb-8">

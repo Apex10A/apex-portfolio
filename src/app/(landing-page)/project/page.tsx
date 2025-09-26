@@ -1,7 +1,7 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import { Suspense } from 'react';
-import { Search, ExternalLink, Github, Calendar, User, Code, Filter, X, Eye, Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Search, ExternalLink, Github, Calendar, User, Code, Filter, X, Star } from 'lucide-react';
 
 interface Project {
   id: number;
@@ -36,8 +36,7 @@ const Works = () => {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [currentIndex, setCurrentIndex] = useState<number>(0); // carousel index
-  const [isAutoPlay, setIsAutoPlay] = useState<boolean>(true); // toggle autoplay
+  const [visibleCount, setVisibleCount] = useState<number>(6);
 
   const projects: Project[] = [
     {
@@ -70,7 +69,7 @@ const Works = () => {
     },
      {
       id: 10,
-      title: "OtaWatch",
+      title: "Ohana web",
       description: "Collaborative project developed during HNG Internship, focusing on creating innovative solutions in the education technology space.",
       image: "/ohana.png",
       category: "professional",
@@ -157,6 +156,8 @@ const Works = () => {
     },
   ];
 
+  const featuredProjects = projects.filter(p => p.featured);
+
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 800);
     return () => clearTimeout(timer);
@@ -176,14 +177,7 @@ const Works = () => {
       return a.title.localeCompare(b.title);
     });
 
-  // Auto-play carousel: advance every 4s, pause on manual nav for 8s
-  useEffect(() => {
-    if (!isAutoPlay || filteredProjects.length === 0) return;
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % filteredProjects.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, [isAutoPlay, filteredProjects.length]);
+
 
   const categories = [
     { id: 'all', label: 'All Projects', count: projects.length },
@@ -192,13 +186,7 @@ const Works = () => {
     { id: 'app', label: 'Applications', count: projects.filter(p => p.category === 'app').length }
   ];
 
-  // Reset/Clamp currentIndex when filtered list changes
-  useEffect(() => {
-    if (filteredProjects.length === 0) return;
-    if (currentIndex >= filteredProjects.length) {
-      setCurrentIndex(0);
-    }
-  }, [filteredProjects.length]);
+
 
   const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => (
     <div className="">
@@ -325,7 +313,7 @@ const Works = () => {
           <div className="mb-12 space-y-6">
             {/* Search and View Controls */}
             <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
-              {/* <div className="relative flex-1 max-w-md">
+              <div className="relative flex-1 max-w-md">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                 <input
                   type="text"
@@ -334,9 +322,9 @@ const Works = () => {
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="w-full pl-10 pr-4 py-3 bg-gray-800 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-20 transition-all"
                 />
-              </div> */}
+              </div>
               
-              {/* <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-4">
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
@@ -353,11 +341,11 @@ const Works = () => {
                 >
                   <Filter className="w-5 h-5" />
                 </button>
-              </div> */}
+              </div>
             </div>
 
             {/* Category Filters */}
-            {/* <div className="flex flex-wrap justify-center gap-3">
+            <div className="flex flex-wrap justify-center gap-3">
               {categories.map((category) => (
                 <button
                   key={category.id}
@@ -372,7 +360,7 @@ const Works = () => {
                   <span className="ml-2 text-sm opacity-75">({category.count})</span>
                 </button>
               ))}
-            </div> */}
+            </div>
           </div>
 
           {/* Results Info */}
@@ -384,106 +372,44 @@ const Works = () => {
           </div>
         </div>
 
-        {/* Projects Carousel */}
-        <div className="container mx-auto px-4 lg:px-8 pb-20 relative z-10">
+        {/* Featured strip */}
+        <div className="container mx-auto px-4 lg:px-8 relative z-10 mb-14">
+          <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
+            <Star className="w-4 h-4 text-yellow-400" /> Featured Projects
+          </h2>
           <div className="relative">
-            {/* Track */}
-            <div className="overflow-hidden rounded-2xl">
-              <div
-                className="flex transition-transform duration-700 ease-out"
-                style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-              >
-                {filteredProjects.map((project) => (
-                  <div key={project.id} className="min-w-full px-1">
-                    <div
-                      className={`group bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700 hover:border-yellow-400/50 transition-all duration-500 ${
-                        project.featured ? 'ring-2 ring-yellow-400/30' : ''
-                      }`}
-                    >
-                      <div className="relative overflow-hidden">
-                        <img
-                          src={project.image}
-                          alt={project.title}
-                          className="w-full h-72 md:h-[22rem] object-cover group-hover:scale-105 transition-transform duration-700"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        {/* Floating Action Buttons */}
-                        <div className="absolute inset-0 flex items-center justify-center space-x-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
-                          <button
-                            onClick={() => setSelectedProject(project)}
-                            className="bg-white/20 backdrop-blur-sm hover:bg-yellow-400 hover:text-black text-white p-3 rounded-full transition-all duration-300 transform hover:scale-110"
-                          >
-                            <Eye className="w-5 h-5" />
-                          </button>
-                          <a
-                            href={project.liveLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bg-white/20 backdrop-blur-sm hover:bg-yellow-400 hover:text-black text-white p-3 rounded-full transition-all duration-300 transform hover:scale-110"
-                          >
-                            <ExternalLink className="w-5 h-5" />
-                          </a>
-                          <a
-                            href={project.githubLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bg-white/20 backdrop-blur-sm hover:bg-gray-700 text-white p-3 rounded-full transition-all duration-300 transform hover:scale-110"
-                          >
-                            <Github className="w-5 h-5" />
-                          </a>
+            <div className="overflow-x-auto no-scrollbar">
+              <div className="flex gap-4 snap-x snap-mandatory">
+                {featuredProjects.map((project) => (
+                  <div key={project.id} className="snap-start min-w-[280px] sm:min-w-[340px] md:min-w-[420px]">
+                    <div className="group bg-gray-800/50 rounded-2xl overflow-hidden border border-gray-700 hover:border-yellow-400/50 transition-all duration-300">
+                      <div className="relative">
+                        <img src={project.image} alt={project.title} className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <div className="absolute top-3 left-3 bg-yellow-400 text-black text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
+                          <Star className="w-3 h-3" /> Featured
                         </div>
-                        {/* Status Badge */}
-                        <div className="absolute top-4 right-4">
-                          <span className="bg-green-500 text-white px-3 py-1 rounded-full text-xs font-medium">
-                            {project.status}
-                          </span>
+                        <div className="absolute top-3 right-3">
+                          <span className="bg-green-500 text-white px-2 py-1 rounded-full text-[10px] font-medium">{project.status}</span>
                         </div>
-                        {/* Featured Badge */}
-                        {project.featured && (
-                          <div className="absolute top-4 left-4">
-                            <span className="bg-yellow-400 text-black px-3 py-1 rounded-full text-xs font-bold flex items-center">
-                              <Star className="w-3 h-3 mr-1" />
-                              Featured
-                            </span>
-                          </div>
-                        )}
                       </div>
-
-                      <div className="p-6">
-                        <div className="flex justify-between items-start mb-4">
-                          <h3 className="text-xl font-bold group-hover:text-yellow-400 transition-colors">
-                            {project.title}
-                          </h3>
+                      <div className="p-4">
+                        <div className="flex items-start justify-between mb-2">
+                          <h3 className="font-semibold group-hover:text-yellow-400 transition-colors">{project.title}</h3>
                           {project.year && (
-                            <span className="text-xs text-yellow-400 bg-gray-700 px-2 py-1 rounded-full flex items-center">
+                            <span className="text-[10px] text-yellow-400 bg-gray-700 px-2 py-1 rounded-full flex items-center">
                               <Calendar className="w-3 h-3 mr-1" />
                               {project.year}
                             </span>
                           )}
                         </div>
-                        {project.role && (
-                          <p className="text-sm text-gray-400 mb-3 flex items-center">
-                            <User className="w-4 h-4 mr-1" />
-                            {project.role}
-                          </p>
-                        )}
-                        <p className="text-gray-300 mb-6 leading-relaxed line-clamp-3">
-                          {project.description}
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                          {project.tech.slice(0, 4).map((tech, index) => (
-                            <span
-                              key={index}
-                              className="px-3 py-1 bg-gray-700/70 hover:bg-yellow-400/20 hover:text-yellow-400 rounded-full text-xs transition-colors border border-gray-600"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                          {project.tech.length > 4 && (
-                            <span className="px-3 py-1 bg-gray-700/70 rounded-full text-xs text-gray-400">
-                              +{project.tech.length - 4} more
-                            </span>
-                          )}
+                        <p className="text-sm text-gray-300 line-clamp-2 mb-3">{project.description}</p>
+                        <div className="flex gap-2">
+                          <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="text-xs bg-yellow-400 text-black px-3 py-1 rounded-md flex items-center gap-1">
+                            <ExternalLink className="w-3 h-3" /> Live
+                          </a>
+                          <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="text-xs bg-gray-700 text-white px-3 py-1 rounded-md flex items-center gap-1 border border-gray-600 hover:bg-gray-600">
+                            <Github className="w-3 h-3" /> Code
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -491,64 +417,75 @@ const Works = () => {
                 ))}
               </div>
             </div>
+          </div>
+        </div>
 
-            {/* Navigation Controls */}
-            <button
-              aria-label="Previous"
-              onClick={() => {
-                setIsAutoPlay(false);
-                setCurrentIndex((prev) => (prev - 1 + filteredProjects.length) % filteredProjects.length);
-                setTimeout(() => setIsAutoPlay(true), 8000);
-              }}
-              className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 bg-gray-900/60 hover:bg-gray-800 text-white p-3 rounded-full border border-gray-700 shadow-md"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button
-              aria-label="Next"
-              onClick={() => {
-                setIsAutoPlay(false);
-                setCurrentIndex((prev) => (prev + 1) % filteredProjects.length);
-                setTimeout(() => setIsAutoPlay(true), 8000);
-              }}
-              className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 bg-gray-900/60 hover:bg-gray-800 text-white p-3 rounded-full border border-gray-700 shadow-md"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-
-            {/* Dots */}
-            <div className="flex justify-center gap-2 mt-6">
-              {filteredProjects.map((_, idx) => (
-                <button
-                  key={idx}
-                  aria-label={`Go to slide ${idx + 1}`}
-                  onClick={() => {
-                    setIsAutoPlay(false);
-                    setCurrentIndex(idx);
-                    setTimeout(() => setIsAutoPlay(true), 8000);
-                  }}
-                  className={`w-2.5 h-2.5 rounded-full transition-colors ${
-                    idx === currentIndex ? 'bg-yellow-400' : 'bg-gray-600 hover:bg-gray-500'
-                  }`}
-                />
+        {/* Grid */}
+        <div className="container mx-auto px-4 lg:px-8 pb-20 relative z-10">
+          {filteredProjects.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredProjects.slice(0, visibleCount).map((project) => (
+                <div key={project.id} className="group bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700 hover:border-yellow-400/50 transition-all duration-300">
+                  <div className="relative overflow-hidden">
+                    <img src={project.image} alt={project.title} className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500" />
+                    {project.featured && (
+                      <div className="absolute top-3 left-3 bg-yellow-400 text-black text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
+                        <Star className="w-3 h-3" /> Featured
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-5">
+                    <div className="flex items-start justify-between mb-2">
+                      <h3 className="text-lg font-semibold group-hover:text-yellow-400 transition-colors">{project.title}</h3>
+                      {project.year && (
+                        <span className="text-[10px] text-yellow-400 bg-gray-700 px-2 py-1 rounded-full flex items-center">
+                          <Calendar className="w-3 h-3 mr-1" />
+                          {project.year}
+                        </span>
+                      )}
+                    </div>
+                    {project.role && (
+                      <p className="text-xs text-gray-400 mb-2 flex items-center">
+                        <User className="w-3 h-3 mr-1" />
+                        {project.role}
+                      </p>
+                    )}
+                    <p className="text-gray-300 text-sm line-clamp-3 mb-3">{project.description}</p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.tech.slice(0, 4).map((tech, index) => (
+                        <span key={index} className="px-2.5 py-1 bg-gray-700/70 rounded-full text-[11px] border border-gray-600">{tech}</span>
+                      ))}
+                      {project.tech.length > 4 && (
+                        <span className="px-2.5 py-1 bg-gray-700/70 rounded-full text-[11px] text-gray-400">
+                          +{project.tech.length - 4} more
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex gap-2">
+                      <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="flex-1 bg-yellow-400 text-black px-4 py-2 rounded-md text-sm flex items-center justify-center gap-1">
+                        <ExternalLink className="w-4 h-4" /> Live Demo
+                      </a>
+                      <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="flex-1 bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-md text-sm flex items-center justify-center gap-1 border border-gray-600">
+                        <Github className="w-4 h-4" /> Source
+                      </a>
+                    </div>
+                  </div>
+                </div>
               ))}
             </div>
-          </div>
-
-          {/* No Results */}
-          {filteredProjects.length === 0 && (
+          ) : (
             <div className="text-center py-20">
               <div className="text-6xl mb-4">🔍</div>
               <h3 className="text-2xl font-bold mb-2">No projects found</h3>
               <p className="text-gray-400 mb-6">Try adjusting your search terms or filters</p>
-              <button
-                onClick={() => {
-                  setSearchTerm('');
-                  setFilter('all');
-                }}
-                className="bg-yellow-400 text-black px-6 py-3 rounded-xl font-medium hover:bg-yellow-500 transition-colors"
-              >
-                Clear Filters
+              <button onClick={() => { setSearchTerm(''); setFilter('all'); }} className="bg-yellow-400 text-black px-6 py-3 rounded-xl font-medium hover:bg-yellow-500 transition-colors">Clear Filters</button>
+            </div>
+          )}
+
+          {visibleCount < filteredProjects.length && (
+            <div className="flex justify-center mt-10">
+              <button onClick={() => setVisibleCount((v) => v + 6)} className="px-6 py-3 bg-gray-800 border border-gray-600 rounded-xl text-white hover:border-yellow-400 hover:text-yellow-400 transition-colors">
+                Load more
               </button>
             </div>
           )}

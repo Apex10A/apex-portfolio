@@ -137,7 +137,7 @@ const Navigation: React.FC = () => {
           : 'bg-transparent'
       }`}
     >
-      <div className=" mx-auto px-4 sm:px-6 lg:px-8 container mx-auto ">
+      <div className=" mx-auto px-4 sm:px-6 lg:px-8 container ">
         <div className="flex justify-between h-20">
 
           <motion.div 

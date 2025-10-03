@@ -22,6 +22,7 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import Works from './(landing-page)/project/page';
 import Contact from './(landing-page)/contact/page';
+import "@/app/index.css"
 
 interface StatCardProps {
   icon?: React.ReactNode;
@@ -54,7 +55,8 @@ interface WorkExperience {
   company_location: string,
   description: string,
   tenure: string,
-  description_of_workdone: string
+  description_of_workdone: string,
+  highlights?: string[]
 }
 
 const work_experience: WorkExperience[] = [
@@ -67,7 +69,12 @@ const work_experience: WorkExperience[] = [
     company_location: 'Lagos, Nigeria',
     description: 'Frontend Engineer & Mobile Developer',
     tenure: 'June 2024 - Present',
-    description_of_workdone: 'Building scalable frontend systems with React and Next.js, implementing responsive UIs, and collaborating with cross-functional teams to deliver high-quality products.'
+    description_of_workdone: 'Building scalable frontend systems with React and Next.js, implementing responsive UIs, and collaborating with cross-functional teams to deliver high-quality products.',
+    highlights: [
+      'Architected modular design system increasing development velocity by 30%.',
+      'Led performance optimization that reduced key page load times by 45%.',
+      'Mentored junior devs on Next.js best practices and code quality standards.'
+    ]
   },
   {
     id: 2,
@@ -78,7 +85,12 @@ const work_experience: WorkExperience[] = [
     company_location: 'Abuja, Nigeria',
     description: 'Frontend Developer',
     tenure: 'Jan 2024 - May 2024',
-    description_of_workdone: 'Developed interactive dashboards and data visualization tools using React and D3.js. Implemented state management solutions and optimized application performance.'
+    description_of_workdone: 'Developed interactive dashboards and data visualization tools using React and D3.js. Implemented state management solutions and optimized application performance.',
+    highlights: [
+      'Built real-time analytics dashboard used by 2K+ researchers globally.',
+      'Implemented advanced D3.js visualizations for complex AI datasets.',
+      'Collaborated across teams to ship features 2 weeks ahead of schedule.'
+    ]
   },
   {
     id: 3,
@@ -89,7 +101,12 @@ const work_experience: WorkExperience[] = [
     company_location: 'United States',
     description: 'UI Developer',
     tenure: 'Aug 2023 - Dec 2023',
-    description_of_workdone: 'Created secure and accessible user interfaces for security tools. Worked closely with design and backend teams to implement complex workflows.'
+    description_of_workdone: 'Created secure and accessible user interfaces for security tools. Worked closely with design and backend teams to implement complex workflows.',
+    highlights: [
+      'Delivered secure UI flows aligned with strict compliance requirements.',
+      'Improved accessibility scores to WCAG AA across core products.',
+      'Developed reusable components that reduced lead time on new features.'
+    ]
   },
   {
     id: 4,
@@ -100,7 +117,12 @@ const work_experience: WorkExperience[] = [
     company_location: 'Lagos, Nigeria',
     description: 'Frontend Development Intern',
     tenure: 'May 2023 - Jul 2023',
-    description_of_workdone: 'Participated in intensive frontend development program, built multiple projects, and collaborated with team members on real-world applications.'
+    description_of_workdone: 'Participated in intensive frontend development program, built multiple projects, and collaborated with team members on real-world applications.',
+    highlights: [
+      'Completed 12+ sprint-based product challenges within deadline.',
+      'Collaborated in cross-functional teams to ship production-ready features.',
+      'Recognized for outstanding UI implementation during final demo day.'
+    ]
   },
 ]
 const TECH_STACK = [
@@ -133,6 +155,47 @@ const ACHIEVEMENTS: AchievementCardProps[] = [
     icon: "💻"
   }
 ];
+
+const generateHighlightsFromDescription = (description: string): string[] => {
+  const segments = description
+    .split(/\.(?=\s|$)/)
+    .map((segment) => segment.trim())
+    .filter(Boolean);
+
+  if (segments.length >= 3) {
+    return segments.slice(0, 3).map((segment) => segment.endsWith('.') ? segment : `${segment}.`);
+  }
+
+  if (segments.length === 2) {
+    return [
+      segments[0].endsWith('.') ? segments[0] : `${segments[0]}.`,
+      segments[1].endsWith('.') ? segments[1] : `${segments[1]}.`,
+      'Collaborated closely with stakeholders to ensure measurable product impact.'
+    ];
+  }
+
+  if (segments.length === 1) {
+    return [
+      segments[0].endsWith('.') ? segments[0] : `${segments[0]}.`,
+      'Introduced process improvements that boosted overall team efficiency.',
+      'Delivered consistently high-quality interfaces aligned with brand guidelines.'
+    ];
+  }
+
+  return [
+    'Led initiatives that improved business KPIs and user satisfaction.',
+    'Collaborated across teams to ship features with measurable impact.',
+    'Championed design-to-development handoff and codebase maintainability.'
+  ];
+};
+
+const _getImpactHighlights = (work: WorkExperience): string[] => {
+  if (work.highlights && work.highlights.length > 0) {
+    return work.highlights;
+  }
+
+  return generateHighlightsFromDescription(work.description_of_workdone);
+};
 
 const SOCIAL_LINKS: SocialLinkProps[] = [
   { href: 'https://github.com/Apex10A', icon: FaGithub, label: 'GitHub' },
@@ -283,7 +346,7 @@ export default function Home() {
             </motion.h1>
             
             <motion.p 
-              className="text-base sm:text-lg lg:text-xl text-gray-300"
+              className="text-base sm:text-lg lg:text-xl text-gray-300 "
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -327,7 +390,198 @@ export default function Home() {
           </div>
         </div>
 
-         <section className="container mx-auto ">
+        <div className='w-full '>
+          <section className="">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className=""
+      >
+        <div className=" mb-16">
+          <h2 className="text-2xl sm:text-3xl lg:text-7xl font-bold mb-4 text-yellow-400 uppercase">
+            Work Experience
+          </h2>
+          {/* <p className="text-gray-300 text-lg">
+            My professional journey and key contributions
+          </p> */}
+        </div>
+        
+        <div className="relative">
+          <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-yellow-400 via-yellow-400/50 to-transparent hidden md:block"></div>
+          
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
+            <div className="space-y-12">
+              {work_experience?.map((work, index) => {
+                const isActive = selectedWorkId === work.id;
+                const previewText = work.description_of_workdone.length > 160
+                  ? `${work.description_of_workdone.substring(0, 160)}...`
+                  : work.description_of_workdone;
+
+                return (
+                  <motion.div
+                    key={work?.id}
+                    className="relative"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.2 }}
+                  >
+                    <div
+                      className={`absolute left-4 w-4 h-4 rounded-full border-4 hidden md:block transition-colors duration-300 ${
+                        isActive ? 'bg-yellow-500 border-yellow-400/40' : 'bg-yellow-400 border-gray-900'
+                      }`}
+                    ></div>
+
+                    <motion.div
+                      className={`bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl shadow-2xl md:ml-16 transition-all duration-300 border cursor-pointer ${
+                        isActive
+                          ? 'border-yellow-400/80 shadow-yellow-400/20'
+                          : 'border-gray-700 hover:border-yellow-400/30'
+                      }`}
+                      whileHover={{
+                        y: -6,
+                        boxShadow: "0 18px 36px rgba(0,0,0,0.25)",
+                        transition: { type: "spring", stiffness: 300 }
+                      }}
+                      onClick={() => handleSelectWork(work.id)}
+                    >
+                      <div className="flex flex-col gap-4">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+                          <h3 className="text-2xl font-bold text-white">
+                            {work?.company_name}
+                          </h3>
+                          <span className="text-sm text-yellow-300 font-semibold">
+                            {work?.description}
+                          </span>
+                        </div>
+
+                        <div className="flex flex-wrap items-center gap-3 text-sm text-gray-400">
+                          <span className="bg-gray-800/60 px-3 py-1 rounded-full">
+                            {work?.status}
+                          </span>
+                          <span className="bg-gray-800/60 px-3 py-1 rounded-full">
+                            {work?.company_location}
+                          </span>
+                          <span className="bg-gray-800/60 px-3 py-1 rounded-full">
+                            {work?.tenure}
+                          </span>
+                        </div>
+
+                        <p className="text-gray-400 text-sm leading-relaxed">
+                          {previewText}
+                        </p>
+
+                        <div className="flex items-center justify-between gap-4 pt-2">
+                          <div className="flex items-center gap-2 text-xs uppercase tracking-wide text-gray-400">
+                            <span className={`inline-flex h-2 w-2 rounded-full ${isActive ? 'bg-yellow-400' : 'bg-gray-500'}`}></span>
+                            <span>{isActive ? 'Currently viewing' : 'Click card for details'}</span>
+                          </div>
+                          <motion.button
+                            type="button"
+                            className={`px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2 transition-colors duration-300 ${
+                              isActive
+                                ? 'bg-yellow-300 text-black'
+                                : 'bg-yellow-400/20 text-yellow-300 hover:bg-yellow-300 hover:text-black'
+                            }`}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleSelectWork(work.id);
+                            }}
+                          >
+                            {isActive ? 'Viewing Details' : 'View Details'}
+                            <motion.span
+                              animate={{ rotate: isActive ? 90 : 0 }}
+                              transition={{ duration: 0.3 }}
+                            >
+                              ➜
+                            </motion.span>
+                          </motion.button>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            <AnimatePresence mode="wait">
+              {selectedWork && (
+                <motion.aside
+                  key={selectedWork.id}
+                  initial={{ opacity: 0, x: 40, filter: 'blur(8px)' }}
+                  animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+                  exit={{ opacity: 0, x: 40, filter: 'blur(8px)' }}
+                  transition={{ duration: 0.4 }}
+                  className="bg-gradient-to-br from-gray-900/80 to-gray-800 p-8 rounded-2xl border border-yellow-400/30 shadow-2xl"
+                >
+                  <div className="flex flex-col gap-6">
+                    <div className="flex flex-col gap-3">
+                      <span className="bg-yellow-400/20 text-yellow-300 px-3 py-1 rounded-full text-xs font-semibold self-start">
+                        {selectedWork.status}
+                      </span>
+                      <h3 className="text-3xl font-bold text-white">
+                        {selectedWork.company_name}
+                      </h3>
+                      <p className="text-gray-300 text-base font-medium">
+                        {selectedWork.description}
+                      </p>
+                      <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400">
+                        <div className="flex items-center gap-2">
+                          <span className="w-2 h-2 bg-yellow-400 rounded-full"></span>
+                          <span>{selectedWork.company_location}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
+                          <span className="font-medium">{selectedWork.tenure}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <p className="text-gray-400 italic text-sm leading-relaxed">
+                      {selectedWork.what_company_does}
+                    </p>
+
+                    <div className="bg-gray-900/60 border border-gray-700 rounded-xl p-6 space-y-4">
+                      <h4 className="text-lg font-semibold text-yellow-300">
+                        Impact Highlights
+                      </h4>
+                      <ul className="space-y-3 text-gray-300 text-sm leading-relaxed">
+                        {_getImpactHighlights(selectedWork).map((highlight, index) => (
+                          <li key={`${selectedWork.id}-${index}`} className="flex gap-3">
+                            <span className="text-yellow-400 mt-1">▹</span>
+                            <span>{highlight}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {selectedWork.website_url && (
+                      <motion.a
+                        href={selectedWork.website_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-yellow-300 text-black rounded-full font-semibold text-sm uppercase tracking-wide hover:bg-yellow-400 transition-colors duration-300"
+                        whileHover={{ scale: 1.03 }}
+                        whileTap={{ scale: 0.97 }}
+                      >
+                        Visit Company Website
+                      </motion.a>
+                    )}
+                  </div>
+                </motion.aside>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
+      </motion.div>
+    </section>
+        </div>
+
+           <section className="container mx-auto py-10">
         <motion.h2 
           className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12"
           initial={{ opacity: 0, y: 20 }}
@@ -356,138 +610,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-        <div className='grid md:grid-cols-2 md:gap-8 '>
-          <section className="py-16 sm:py-20">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="max-w-4xl mx-auto"
-      >
-        <div className=" mb-16">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 text-yellow-400">
-            Work Experience
-          </h2>
-          <p className="text-gray-300 text-lg">
-            My professional journey and key contributions
-          </p>
-        </div>
-        
-        <div className="relative">
-          <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-yellow-400 via-yellow-400/50 to-transparent hidden md:block"></div>
-          
-          <div className="space-y-12">
-            {work_experience?.map((work, index) => {
-              const isExpanded = expandedWork === work.id;
-              return (
-                <motion.div
-                  key={work?.id}
-                  className="relative"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
-                >
-                  <div className="absolute left-4 w-4 h-4 bg-yellow-400 rounded-full border-4 border-gray-900 hidden md:block"></div>
-
-                  <motion.div
-                    className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl shadow-2xl border border-gray-700 md:ml-16 hover:border-yellow-400/30 transition-all duration-300 cursor-pointer"
-                    whileHover={{
-                      y: -8,
-                      boxShadow: "0 20px 40px rgba(0,0,0,0.3)",
-                      transition: { type: "spring", stiffness: 300 }
-                    }}
-                    onClick={() => toggleExpandedWork(work.id)}
-                  >
-                    <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6">
-                      <div className="flex-1">
-                        <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
-                          <h3 className="text-2xl font-bold text-white">
-                            {work?.company_name}
-                          </h3>
-                          {work?.website_url && (
-                            <a
-                              href={work?.website_url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-yellow-400 hover:text-yellow-300 text-sm underline"
-                              onClick={(e) => e.stopPropagation()}
-                            >
-                              Visit Website
-                            </a>
-                          )}
-                        </div>
-
-                        <div className="flex flex-wrap items-center gap-3 mb-4">
-                          <span className="bg-yellow-400/20 text-yellow-400 px-4 py-2 rounded-full text-sm font-semibold">
-                            {work?.description}
-                          </span>
-                          <span className="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">
-                            {work?.status}
-                          </span>
-                        </div>
-
-                        {isExpanded && (
-                          <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: "auto" }}
-                            exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: 0.3 }}
-                            className="overflow-hidden"
-                          >
-                            <p className="text-gray-400 italic text-sm mb-4 leading-relaxed">
-                              {work?.what_company_does}
-                            </p>
-
-                            <p className="text-gray-300 leading-relaxed mb-4">
-                              {work?.description_of_workdone}
-                            </p>
-                          </motion.div>
-                        )}
-
-                        <div className="flex flex-wrap items-center justify-between gap-4">
-                          <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400">
-                            <div className="flex items-center gap-2">
-                              <span className="w-2 h-2 bg-yellow-400 rounded-full"></span>
-                              <span>{work?.company_location}</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                              <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
-                              <span className="font-medium">{work?.tenure}</span>
-                            </div>
-                          </div>
-
-                          <motion.button
-                            className="bg-yellow-400 text-black px-4 py-2 rounded-full text-sm font-semibold hover:bg-yellow-300 transition-colors duration-300 flex items-center gap-2"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              toggleExpandedWork(work.id);
-                            }}
-                          >
-                            {isExpanded ? 'View Less' : 'View More'}
-                            <motion.span
-                              animate={{ rotate: isExpanded ? 180 : 0 }}
-                              transition={{ duration: 0.3 }}
-                            >
-                              ▼
-                            </motion.span>
-                          </motion.button>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </motion.div>
-    </section>
-        </div>
     <Works/>
     <Contact/>
       </section>

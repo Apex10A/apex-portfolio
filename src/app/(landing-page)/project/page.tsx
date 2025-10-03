@@ -281,22 +281,18 @@ const Works = () => {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <div className=" min-h-screen text-white relative overflow-hidden">
-        {/* Animated background elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-yellow-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-        </div>
+      <div className=" min-h-screen text-white relative overflow-hidden py-10">
+       
 
         {/* Header */}
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <div className=" mb-4">
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black mb-6 bg-gradient-to-r from-white via-yellow-400 to-white bg-clip-text text-transparent">
-              My <span className="text-yellow-400">Works</span>
+            <h1 className="text-2xl sm:text-3xl lg:text-7xl uppercase font-black mb-6 bg-gradient-to-r from-white via-yellow-400 to-white bg-clip-text text-transparent">
+            <span className="text-yellow-400">MY Works</span>
             </h1>
-            <p className="text-lg sm:text-xl text-gray-300 max-w-3xl leading-relaxed">
+            {/* <p className="text-lg sm:text-xl text-gray-300 max-w-3xl leading-relaxed">
               Take a sneak peak into my projects and see how I bring ideas to life through code, creativity, and innovation.
-            </p>
+            </p> */}
             {/* <div className="flex justify-center items-center space-x-4 text-sm text-gray-400">
               <span className="flex items-center">
                 <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
@@ -310,66 +306,10 @@ const Works = () => {
           </div>
 
           {/* Enhanced Controls */}
-          <div className="mb-12 space-y-6">
-            {/* Search and View Controls */}
-            <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
-              <div className="relative flex-1 max-w-md">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                <input
-                  type="text"
-                  placeholder="Search projects, technologies..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-gray-800 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-20 transition-all"
-                />
-              </div>
-              
-              <div className="flex items-center space-x-4">
-                <select
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value)}
-                  className="bg-gray-800 border border-gray-600 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-yellow-400 transition-colors"
-                >
-                  <option value="newest">Newest First</option>
-                  <option value="oldest">Oldest First</option>
-                  <option value="alphabetical">A-Z</option>
-                </select>
-                
-                <button
-                  onClick={() => setViewMode(viewMode === 'grid' ? 'list' : 'grid')}
-                  className="bg-gray-800 hover:bg-gray-700 border border-gray-600 rounded-xl px-4 py-3 text-white transition-colors flex items-center"
-                >
-                  <Filter className="w-5 h-5" />
-                </button>
-              </div>
-            </div>
-
-            {/* Category Filters */}
-            <div className="flex flex-wrap justify-center gap-3">
-              {categories.map((category) => (
-                <button
-                  key={category.id}
-                  onClick={() => setFilter(category.id)}
-                  className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 ${
-                    filter === category.id
-                      ? 'bg-yellow-400 text-black shadow-lg shadow-yellow-400/25'
-                      : 'bg-gray-800 text-gray-300 border border-gray-600 hover:border-yellow-400 hover:text-yellow-400'
-                  }`}
-                >
-                  {category.label}
-                  <span className="ml-2 text-sm opacity-75">({category.count})</span>
-                </button>
-              ))}
-            </div>
-          </div>
+         
 
           {/* Results Info */}
-          <div className="mb-8 text-center">
-            <p className="text-gray-400">
-              Showing <span className="text-yellow-400 font-medium">{filteredProjects.length}</span> of {projects.length} projects
-              {searchTerm && <span> matching "<span className="text-yellow-400">{searchTerm}</span>"</span>}
-            </p>
-          </div>
+          
         </div>
 
         {/* Featured strip */}

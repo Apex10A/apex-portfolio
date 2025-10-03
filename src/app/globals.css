@@ -25,7 +25,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: 'Clash Grotesk', Arial, Helvetica, sans-serif;
+  font-family: 'Clash Grotesk', sans-serif;
 }
 
 @layer utilities {

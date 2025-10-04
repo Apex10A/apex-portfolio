@@ -636,7 +636,7 @@ export default function Home() {
      
 
       {/* Social Links & Footer */}
-      <section className="container mx-auto px-4 lg:px-8 pb-8">
+      {/* <section className="container mx-auto px-4 lg:px-8 pb-8">
         <motion.div 
           className="flex justify-center space-x-6 sm:space-x-8 mb-8"
           initial={{ opacity: 0 }}
@@ -665,7 +665,7 @@ export default function Home() {
         > 
           <p>© {new Date().getFullYear()} Praise Afolabi. All Rights Reserved.</p>
         </motion.footer>
-      </section>
+      </section> */}
     </div>
 
    

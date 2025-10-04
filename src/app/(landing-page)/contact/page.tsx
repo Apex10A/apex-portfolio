@@ -321,41 +321,41 @@ const Contact: React.FC = () => {
       label: 'Phone',
       value: '+234 816 086 2773',
       href: 'tel:+2348160862773',
-      description: 'Available Mon-Fri, 9AM-6PM WAT'
+      description: 'Available anyday of the week'
     },
     {
       icon: <MapPin />,
       label: 'Location',
-      value: 'Ondo, Nigeria',
-      description: 'Open to remote work worldwide'
+      value: 'Lagos, Nigeria',
+      description: 'Open to remote/onsite works '
     }
   ];
 
   const socialLinks = [
-    {
-      icon: <Linkedin />,
-      label: 'LinkedIn',
-      href: '#',
-      color: 'hover:text-blue-400'
-    },
+    // {
+    //   icon: <Linkedin />,
+    //   label: 'LinkedIn',
+    //   href: '#',
+    //   color: 'hover:text-blue-400'
+    // },
     {
       icon: <Github />,
       label: 'GitHub',
-      href: '#',
+      href: 'https://github.com/Apex10A',
       color: 'hover:text-gray-300'
     },
     {
       icon: <Twitter />,
       label: 'Twitter',
-      href: '#',
+      href: 'https://x.com/dev_apexxr',
       color: 'hover:text-blue-400'
     },
-    {
-      icon: <Globe />,
-      label: 'Portfolio',
-      href: '#',
-      color: 'hover:text-yellow-400'
-    }
+    // {
+    //   icon: <Globe />,
+    //   label: 'Portfolio',
+    //   href: '#',
+    //   color: 'hover:text-yellow-400'
+    // }
   ];
 
   const availabilityStatus = {
@@ -391,7 +391,7 @@ const Contact: React.FC = () => {
             <p className="text-sm sm:text-xl text-gray-300 max-w-3xl leading-relaxed opacity-[0.7]">
               Have a project in mind or just want to chat? I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
             </p>
-            <div className="inline-flex items-center justify-center mt-8 p-4 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-700">
+            {/* <div className="inline-flex items-center justify-center mt-8 p-4 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-700">
               <div className={`w-3 h-3 rounded-full mr-3 ${
                 availabilityStatus.status === 'available' ? 'bg-green-400 animate-pulse' :
                 availabilityStatus.status === 'busy' ? 'bg-yellow-400' : 'bg-red-400'
@@ -407,7 +407,7 @@ const Contact: React.FC = () => {
                   {availabilityStatus.responseTime}
                 </span>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className="grid grid-cols-1 xl:grid-cols-5 gap-8 lg:gap-12 mx-auto">
@@ -454,10 +454,10 @@ const Contact: React.FC = () => {
                     <Send className="w-7 h-7 text-yellow-400 mr-3" />
                     Send Message
                   </h2>
-                  <div className="hidden sm:flex items-center text-sm text-gray-400">
+                  {/* <div className="hidden sm:flex items-center text-sm text-gray-400">
                     <Calendar className="w-4 h-4 mr-1" />
                     Usually responds in {availabilityStatus.responseTime}
-                  </div>
+                  </div> */}
                 </div>
                 <ContactForm onSubmit={handleSubmit} status={status} />
               </div>

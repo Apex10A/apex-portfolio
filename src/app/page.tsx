@@ -65,15 +65,15 @@ const work_experience: WorkExperience[] = [
     company_name: 'VeendHQ',
     status: 'Onsite',
     website_url: 'https://veendhq.com/',
-    what_company_does: 'FinTech startup building innovative payment solutions',
+    what_company_does: 'FinTech startup creating modern, inclusive payment and credit solutions.',
     company_location: 'Lagos, Nigeria',
     description: 'Frontend Engineer & Mobile Developer',
-    tenure: 'June 2024 - Present',
+    tenure: 'June 2025 - Present',
     description_of_workdone: 'Building scalable frontend systems with React and Next.js, implementing responsive UIs, and collaborating with cross-functional teams to deliver high-quality products.',
     highlights: [
-      'Architected modular design system increasing development velocity by 30%.',
+      'Architect and maintain a modular design system adopted company-wide, improving development efficiency by 30%.',
       'Led performance optimization that reduced key page load times by 45%.',
-      'Mentored junior devs on Next.js best practices and code quality standards.'
+      'Collaborate with cross-functional teams to build responsive, accessible interfaces using Next.js, Chakra UI, and Tailwind CSS.'
     ]
   },
   {
@@ -84,7 +84,7 @@ const work_experience: WorkExperience[] = [
     what_company_does: 'AI research and development organization',
     company_location: 'Abuja, Nigeria',
     description: 'Frontend Developer',
-    tenure: 'Jan 2024 - May 2024',
+    tenure: 'Jan 2024 - August 2025',
     description_of_workdone: 'Developed interactive dashboards and data visualization tools using React and D3.js. Implemented state management solutions and optimized application performance.',
     highlights: [
       'Built real-time analytics dashboard used by 2K+ researchers globally.',
@@ -100,7 +100,7 @@ const work_experience: WorkExperience[] = [
     what_company_does: 'Cybersecurity and digital forensics firm',
     company_location: 'United States',
     description: 'UI Developer',
-    tenure: 'Aug 2023 - Dec 2023',
+    tenure: 'January 2025 - March 2025',
     description_of_workdone: 'Created secure and accessible user interfaces for security tools. Worked closely with design and backend teams to implement complex workflows.',
     highlights: [
       'Delivered secure UI flows aligned with strict compliance requirements.',

@@ -42,7 +42,7 @@ const Works = () => {
     {
       id: 8,
       title: "ReconXi",
-      description: "Collaborative project developed during HNG Internship, focusing on creating innovative solutions in the education technology space.",
+      description: "",
       image: "/reconxi.png",
       category: "professional",
       tech: ["Next.js", "TailwindCSS", "Typescript", "Stripe", "Tanstack", "Framer Motion", "AI Algorithms", "OpenAI API"],
@@ -56,13 +56,13 @@ const Works = () => {
      {
       id: 9,
       title: "OtaWatch",
-      description: "Collaborative project developed during HNG Internship, focusing on creating innovative solutions in the education technology space.",
+      description: "Website to stream your favorite animes",
       image: "/otawatch.png",
       category: "professional",
-      tech: ["Next.js", "TailwindCSS", "Typescript", "Stripe", "Tanstack", "Framer Motion", "AI Algorithms", "OpenAI API"],
+      tech: ["React", "TailwindCSS", "Typescript", "Framer Motion"],
       year: "July - August 2024",
       role: "Frontend Developer",
-      liveLink: "https://aiforhomework.com/",
+    liveLink: "https://otawatch.one/",
       githubLink: "https://github.com/hngprojects/homeworkai_fe",
       featured: true,
       status: "Live"
@@ -76,7 +76,7 @@ const Works = () => {
       tech: ["Next.js", "TailwindCSS", "Typescript", "Stripe", "Tanstack", "Framer Motion", "AI Algorithms", "OpenAI API"],
       year: "July - August 2024",
       role: "Frontend Developer",
-      liveLink: "https://aiforhomework.com/",
+      liveLink: "https://ohana-webcompany.vercel.app/",
       githubLink: "https://github.com/hngprojects/homeworkai_fe",
       featured: true,
       status: "Live"
@@ -86,24 +86,24 @@ const Works = () => {
     {
        id: 6,
       title: "VeendHQ",
-      description: "A ticket generator web application that helps generating tickets for users and enables uploading and preview of profile picture",
-      category: "app",
+      description: "FinTech startup creating modern, inclusive payment and credit solutions.",
+      category: "web",
       image: "/veendhq.png",
-      tech: ["React.js", "CSS", "Cloudinary", "React-confetti"],
-      year: "2024",
-      liveLink: "https://hng-12-task-two.vercel.app/",
+      tech: [""],
+      year: "2025",
+      liveLink: "https://veendhq.com",
       githubLink: "https://github.com/Apex10A/HNG-12-task-two",
       status: "Live"
     },
     {
       id: 5,
       title: "IAIIEA",
-      description: "A multilingual AI-powered web application that enables real-time language detection, translation across 35+ languages, and text summarization with an intuitive chat interface",
+      description: "",
       category: "app",
       image: "/iaiieaa.png",
-      tech: ["Next.js", "TailwindCSS", "Typescript", "Translator API", "Summarizer API", "Framer Motion"],
+      tech: ["Next.js", "TailwindCSS", "Typescript", "Framer Motion"],
       year: "2024",
-      liveLink: "https://ai-powered-app-chi.vercel.app/",
+      liveLink: "https://iaiiea.vercel.app/",
       githubLink: "https://github.com/Apex10A/hngx-stage3-AI-Powered-app",
       status: "Live"
     },
@@ -269,12 +269,6 @@ const Works = () => {
               </span>
             </div> */}
           </div>
-
-          {/* Enhanced Controls */}
-         
-
-          {/* Results Info */}
-          
         </div>
 
         {/* Featured strip */}

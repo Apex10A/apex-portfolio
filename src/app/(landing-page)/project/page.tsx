@@ -41,14 +41,14 @@ const Works = () => {
   const projects: Project[] = [
     {
       id: 8,
-      title: "HomeworkAI",
+      title: "ReconXi",
       description: "Collaborative project developed during HNG Internship, focusing on creating innovative solutions in the education technology space.",
-      image: "/aiforhomework.png",
+      image: "/reconxi.png",
       category: "professional",
       tech: ["Next.js", "TailwindCSS", "Typescript", "Stripe", "Tanstack", "Framer Motion", "AI Algorithms", "OpenAI API"],
       year: "July - August 2024",
       role: "Frontend Developer",
-      liveLink: "https://aiforhomework.com/",
+      liveLink: "https://reconxi.com/",
       githubLink: "https://github.com/hngprojects/homeworkai_fe",
       featured: true,
       status: "Live"
@@ -82,60 +82,25 @@ const Works = () => {
       status: "Live"
     },
 
+   
     {
-      id: 1,
-      title: "Drip Republic",
-      description: "An elegant e-commerce platform featuring seamless product browsing, real-time inventory updates, and a smooth checkout experience. Built with Next.js, TypeScript, and Firebase Realtime Database for speed and scalability.",
-      image: "/drip.png",
-      category: "web",
-      tech: ["Next.js", "TypeScript", "Firebase Realtime Database"],
-      year: "2024",
-      liveLink: "https://drip-republic.netlify.app/",
-      githubLink: "https://github.com/Apex10A/drip-republic",
-      status: "Live"
-    },
-    {
-      id: 2,
-      title: "Momentum",
-      description: "Momentum is a dynamic, responsive website developed for tracking of daily habits and personal stats like sleep, water intake, and screen time. It contains a chart that shows weekly progress and a way to set daily progress, daily goals and reminders if you miss something.",
-      image: "/momentum.png",
-      category: "web",
-      tech: ["Next.js", "TypeScript", "TailwindCSS", "Chart.js", "Framer Motion"],
-      year: "2024",
-      liveLink: "https://track-habits-nine.vercel.app/",
-      githubLink: "https://github.com/Apex10A/Habit-tracker",
-      status: "Live"
-    },
-    {
-      id: 3,
-      title: "Devlinks Website",
-      description: "A platform designed for developers to showcase their portfolios and connect with others. Features customizable profiles and integrated Firebase Database for data storage.",
-      image: "/devlinks.png",
+       id: 6,
+      title: "VeendHQ",
+      description: "A ticket generator web application that helps generating tickets for users and enables uploading and preview of profile picture",
       category: "app",
-      tech: ["Next.js", "TailwindCSS", "TypeScript", "Firebase Database"],
+      image: "/veendhq.png",
+      tech: ["React.js", "CSS", "Cloudinary", "React-confetti"],
       year: "2024",
-      liveLink: "https://devapexx.netlify.app/",
-      githubLink: "https://github.com/Apex10A/DevLinks",
-      status: "Live"
-    },
-    {
-      id: 4,
-      title: "Movieboxx",
-      description: "A movie discovery platform that fetches and displays the latest movies and TV shows using the TMDB API. Features a clean and user-friendly design for browsing and searching.",
-      image: "/movieboxx.png",
-      category: "app",
-      tech: ["React.js", "TailwindCSS", "TMDB API"],
-      year: "2024",
-      liveLink: "https://hng-react-app.web.app/",
-      githubLink: "https://github.com/Apex10A/Movie-react-app-website",
+      liveLink: "https://hng-12-task-two.vercel.app/",
+      githubLink: "https://github.com/Apex10A/HNG-12-task-two",
       status: "Live"
     },
     {
       id: 5,
-      title: "ChatClaude",
+      title: "IAIIEA",
       description: "A multilingual AI-powered web application that enables real-time language detection, translation across 35+ languages, and text summarization with an intuitive chat interface",
       category: "app",
-      image: "/ChatClaude.png",
+      image: "/iaiieaa.png",
       tech: ["Next.js", "TailwindCSS", "Typescript", "Translator API", "Summarizer API", "Framer Motion"],
       year: "2024",
       liveLink: "https://ai-powered-app-chi.vercel.app/",
@@ -144,7 +109,7 @@ const Works = () => {
     },
     {
       id: 6,
-      title: "Ticz",
+      title: "Ticsz",
       description: "A ticket generator web application that helps generating tickets for users and enables uploading and preview of profile picture",
       category: "app",
       image: "/Ticz.png",
@@ -209,7 +174,7 @@ const Works = () => {
         <div className="p-8">
           <div className="flex flex-wrap justify-between items-start mb-6">
             <h2 className="text-3xl font-bold text-white mb-2">{project.title}</h2>
-            <div className="flex items-center space-x-4">
+            {/* <div className="flex items-center space-x-4">
               <span className="bg-green-500 text-white px-3 py-1 rounded-full text-sm">{project.status}</span>
               {project.year && (
                 <span className="bg-gray-700 text-yellow-400 px-3 py-1 rounded-full text-sm flex items-center">
@@ -217,7 +182,7 @@ const Works = () => {
                   {project.year}
                 </span>
               )}
-            </div>
+            </div> */}
           </div>
           
           {project.role && (
@@ -253,7 +218,7 @@ const Works = () => {
               <ExternalLink className="w-5 h-5 mr-2" />
               View Live Demo
             </a>
-            <a 
+            {/* <a 
               href={project.githubLink}
               className="flex-1 bg-gray-800 hover:bg-gray-700 text-white font-medium px-6 py-3 rounded-lg transition-colors flex items-center justify-center border border-gray-600"
               target="_blank"
@@ -261,7 +226,7 @@ const Works = () => {
             >
               <Github className="w-5 h-5 mr-2" />
               View Source
-            </a>
+            </a> */}
           </div>
         </div>
       </div>
@@ -313,52 +278,7 @@ const Works = () => {
         </div>
 
         {/* Featured strip */}
-        <div className="container mx-auto px-4 lg:px-8 relative z-10 mb-14">
-          <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
-            <Star className="w-4 h-4 text-yellow-400" /> Featured Projects
-          </h2>
-          <div className="relative">
-            <div className="overflow-x-auto no-scrollbar">
-              <div className="flex gap-4 snap-x snap-mandatory">
-                {featuredProjects.map((project) => (
-                  <div key={project.id} className="snap-start min-w-[280px] sm:min-w-[340px] md:min-w-[420px]">
-                    <div className="group bg-gray-800/50 rounded-2xl overflow-hidden border border-gray-700 hover:border-yellow-400/50 transition-all duration-300">
-                      <div className="relative">
-                        <img src={project.image} alt={project.title} className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500" />
-                        <div className="absolute top-3 left-3 bg-yellow-400 text-black text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
-                          <Star className="w-3 h-3" /> Featured
-                        </div>
-                        <div className="absolute top-3 right-3">
-                          <span className="bg-green-500 text-white px-2 py-1 rounded-full text-[10px] font-medium">{project.status}</span>
-                        </div>
-                      </div>
-                      <div className="p-4">
-                        <div className="flex items-start justify-between mb-2">
-                          <h3 className="font-semibold group-hover:text-yellow-400 transition-colors">{project.title}</h3>
-                          {project.year && (
-                            <span className="text-[10px] text-yellow-400 bg-gray-700 px-2 py-1 rounded-full flex items-center">
-                              <Calendar className="w-3 h-3 mr-1" />
-                              {project.year}
-                            </span>
-                          )}
-                        </div>
-                        <p className="text-sm text-gray-300 line-clamp-2 mb-3">{project.description}</p>
-                        <div className="flex gap-2">
-                          <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="text-xs bg-yellow-400 text-black px-3 py-1 rounded-md flex items-center gap-1">
-                            <ExternalLink className="w-3 h-3" /> Live
-                          </a>
-                          <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="text-xs bg-gray-700 text-white px-3 py-1 rounded-md flex items-center gap-1 border border-gray-600 hover:bg-gray-600">
-                            <Github className="w-3 h-3" /> Code
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
+      
 
         {/* Grid */}
         <div className="container mx-auto px-4 lg:px-8 pb-20 relative z-10">
@@ -405,9 +325,9 @@ const Works = () => {
                       <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="flex-1 bg-yellow-400 text-black px-4 py-2 rounded-md text-sm flex items-center justify-center gap-1">
                         <ExternalLink className="w-4 h-4" /> Live Demo
                       </a>
-                      <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="flex-1 bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-md text-sm flex items-center justify-center gap-1 border border-gray-600">
+                      {/* <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="flex-1 bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-md text-sm flex items-center justify-center gap-1 border border-gray-600">
                         <Github className="w-4 h-4" /> Source
-                      </a>
+                      </a> */}
                     </div>
                   </div>
                 </div>

@@ -98,7 +98,7 @@ const work_experience: WorkExperience[] = [
     status: 'Contract',
     website_url: 'https://reconxi.com/',
     what_company_does: 'Cybersecurity and digital forensics firm',
-    company_location: 'United States',
+    company_location: 'Lagos',
     description: 'UI Developer',
     tenure: 'January 2025 - March 2025',
     description_of_workdone: 'Created secure and accessible user interfaces for security tools. Worked closely with design and backend teams to implement complex workflows.',

@@ -97,9 +97,9 @@ const work_experience: WorkExperience[] = [
     company_name: 'ReconXI',
     status: 'Contract',
     website_url: 'https://reconxi.com/',
-    what_company_does: 'Cybersecurity and digital forensics firm',
+    what_company_does: 'AI-powered financial reconciliation tool that helps businesses quickly match bank statements with company ledgers.',
     company_location: 'Lagos',
-    description: 'UI Developer',
+    description: 'Frontend Developer',
     tenure: 'January 2025 - March 2025',
     description_of_workdone: 'Created secure and accessible user interfaces for security tools. Worked closely with design and backend teams to implement complex workflows.',
     highlights: [

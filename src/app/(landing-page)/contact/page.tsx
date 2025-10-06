@@ -378,7 +378,7 @@ const Contact: React.FC = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <div className=" text-white relative overflow-hidden">
-        <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-20 lg:pt-24 pb-16">
+        <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 lg:pt-24 pb-16">
           <div className=" mb-16 lg:mb-20">
             <div className="inline-flex items-center justify-center p-2 bg-yellow-400/10 rounded-full mb-6">
               <Sparkles className="w-6 h-6 text-yellow-400 mr-2" />

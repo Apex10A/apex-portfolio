@@ -505,8 +505,8 @@ export default function Home() {
 
                         <div className="flex items-center justify-between gap-4 pt-2">
                           <div className="flex items-center gap-2 text-xs uppercase tracking-wide text-gray-400">
-                            <span className={`inline-flex h-2 w-2 rounded-full ${isActive ? 'bg-yellow-400' : 'bg-gray-500'}`}></span>
-                            <span className="lg:hidden">Full details shown</span>
+                            {/* <span className={`inline-flex h-2 w-2 rounded-full ${isActive ? 'bg-yellow-400' : 'bg-gray-500'}`}></span> */}
+                            {/* <span className="lg:hidden">Full details shown</span> */}
                             <span className="hidden lg:block">{isActive ? 'Currently viewing' : 'Click card for details'}</span>
                           </div>
                           <motion.button
@@ -547,7 +547,7 @@ export default function Home() {
                   animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
                   exit={{ opacity: 0, x: 40, filter: 'blur(8px)' }}
                   transition={{ duration: 0.4 }}
-                  className="bg-gradient-to-br from-gray-900/80 to-gray-800 p-4 sm:p-6 lg:p-8 rounded-2xl border border-yellow-400/30 shadow-2xl"
+                  className="bg-gradient-to-br from-gray-900/80 to-gray-800 p-4 sm:p-6 lg:p-8 rounded-2xl border border-yellow-400/30 shadow-2xl hidden lg:flex"
                 >
                   <div className="flex flex-col gap-6">
                     <div className="flex flex-col gap-3">
@@ -612,7 +612,7 @@ export default function Home() {
     </section>
         </div>
 
-           <section className="container mx-auto py-16">
+           <section className="container mx-auto lg:py-16">
         <motion.h2 
           className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12"
           initial={{ opacity: 0, y: 20 }}

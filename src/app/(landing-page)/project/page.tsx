@@ -39,20 +39,20 @@ const Works = () => {
   const [visibleCount, setVisibleCount] = useState<number>(6);
 
   const projects: Project[] = [
-    {
-      id: 8,
-      title: "ReconXi",
-      description: "",
-      image: "/reconxi.png",
-      category: "professional",
-      tech: ["Next.js", "TailwindCSS", "Typescript", "Stripe", "Tanstack", "Framer Motion", "AI Algorithms", "OpenAI API"],
-      year: "July - August 2024",
-      role: "Frontend Developer",
-      liveLink: "https://reconxi.com/",
-      githubLink: "https://github.com/hngprojects/homeworkai_fe",
-      featured: true,
-      status: "Live"
-    },
+    // {
+    //   id: 8,
+    //   title: "ReconXi",
+    //   description: "",
+    //   image: "/reconxi.png",
+    //   category: "professional",
+    //   tech: ["Next.js", "TailwindCSS", "Typescript", "Stripe", "Tanstack", "Framer Motion", "AI Algorithms", "OpenAI API"],
+    //   year: "January - March 2025",
+    //   role: "Frontend Developer",
+    //   liveLink: "https://reconxi.com/",
+    //   githubLink: "https://github.com/hngprojects/homeworkai_fe",
+    //   featured: true,
+    //   status: "Live"
+    // },
      {
       id: 9,
       title: "OtaWatch",
@@ -83,18 +83,18 @@ const Works = () => {
     },
 
    
-    {
-       id: 6,
-      title: "VeendHQ",
-      description: "FinTech startup creating modern, inclusive payment and credit solutions.",
-      category: "web",
-      image: "/veendhq.png",
-      tech: [""],
-      year: "2025",
-      liveLink: "https://veendhq.com",
-      githubLink: "https://github.com/Apex10A/HNG-12-task-two",
-      status: "Live"
-    },
+    // {
+    //    id: 6,
+    //   title: "VeendHQ",
+    //   description: "FinTech startup creating modern, inclusive payment and credit solutions.",
+    //   category: "web",
+    //   image: "/veendhq.png",
+    //   tech: [""],
+    //   year: "2025",
+    //   liveLink: "https://veendhq.com",
+    //   githubLink: "https://github.com/Apex10A/HNG-12-task-two",
+    //   status: "Live"
+    // },
     {
       id: 5,
       title: "IAIIEA",

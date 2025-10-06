@@ -320,9 +320,9 @@ export default function Home() {
     <div>
       <div className="bg-gradient-to-b from-gray-900 to-black min-h-screen text-white overflow-x-hidden">
       <section className="container mx-auto px-4 lg:px-8">
-        <div className="flex flex-col min-h-screen lg:flex-row items-center justify-between gap-8 lg:gap-12">
+        <div className="flex flex-col lg:min-h-screen lg:flex-row items-center lg:justify-between gap-8 lg:gap-12">
           <motion.div 
-            className="text-center lg:text-left lg:w-1/2 space-y-6"
+            className="text-center lg:text-left lg:w-1/2 space-y-6 pt-10"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -331,7 +331,7 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="inline-block bg-yellow-400/10 text-yellow-400 px-4 py-2 rounded-full text-sm font-medium mb-4"
+              className="inline-block bg-yellow-400/10 text-yellow-400 px-4 py-2 rounded-full text-sm font-medium mb-4 "
             >
               Product Developer & Frontend Engineer
             </motion.div>
@@ -391,7 +391,7 @@ export default function Home() {
         </div>
 
         <div className='w-full '>
-          <section className="">
+          <section className="py-16">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -399,7 +399,7 @@ export default function Home() {
         transition={{ duration: 0.6 }}
         className=""
       >
-        <div className=" mb-16">
+        <div className=" lg:mb-16">
           <h2 className="text-2xl sm:text-3xl lg:text-7xl font-bold mb-4 text-yellow-400 uppercase">
             Work Experience
           </h2>
@@ -435,7 +435,7 @@ export default function Home() {
                     ></div>
 
                     <motion.div
-                      className={`bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl shadow-2xl md:ml-16 transition-all duration-300 border cursor-pointer ${
+                      className={`bg-gradient-to-br from-gray-800 to-gray-900 p-4 sm:p-6 lg:p-8 rounded-2xl shadow-2xl md:ml-16 transition-all duration-300 border cursor-pointer ${
                         isActive
                           ? 'border-yellow-400/80 shadow-yellow-400/20'
                           : 'border-gray-700 hover:border-yellow-400/30'
@@ -469,18 +469,49 @@ export default function Home() {
                           </span>
                         </div>
 
-                        <p className="text-gray-400 text-sm leading-relaxed">
+                        <p className="text-gray-400 text-sm leading-relaxed lg:hidden">
+                          {work.description_of_workdone}
+                        </p>
+                        <p className="text-gray-400 text-sm leading-relaxed hidden lg:block">
                           {previewText}
                         </p>
+
+                        {/* Mobile full details */}
+                        <div className="lg:hidden bg-gray-900/60 border border-gray-700 rounded-xl p-4 mt-4 space-y-3">
+                          <h4 className="text-lg font-semibold text-yellow-300">
+                            Impact Highlights
+                          </h4>
+                          <ul className="space-y-2 text-gray-300 text-sm leading-relaxed">
+                            {_getImpactHighlights(work).map((highlight, index) => (
+                              <li key={`${work.id}-${index}`} className="flex gap-3">
+                                <span className="text-yellow-400 mt-1">▹</span>
+                                <span>{highlight}</span>
+                              </li>
+                            ))}
+                          </ul>
+                          {work.website_url && (
+                            <motion.a
+                              href={work.website_url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-yellow-300 text-black rounded-full font-semibold text-sm uppercase tracking-wide hover:bg-yellow-400 transition-colors duration-300 mt-4"
+                              whileHover={{ scale: 1.03 }}
+                              whileTap={{ scale: 0.97 }}
+                            >
+                              Visit Website
+                            </motion.a>
+                          )}
+                        </div>
 
                         <div className="flex items-center justify-between gap-4 pt-2">
                           <div className="flex items-center gap-2 text-xs uppercase tracking-wide text-gray-400">
                             <span className={`inline-flex h-2 w-2 rounded-full ${isActive ? 'bg-yellow-400' : 'bg-gray-500'}`}></span>
-                            <span>{isActive ? 'Currently viewing' : 'Click card for details'}</span>
+                            <span className="lg:hidden">Full details shown</span>
+                            <span className="hidden lg:block">{isActive ? 'Currently viewing' : 'Click card for details'}</span>
                           </div>
                           <motion.button
                             type="button"
-                            className={`px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2 transition-colors duration-300 ${
+                            className={`px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2 transition-colors duration-300 hidden lg:flex ${
                               isActive
                                 ? 'bg-yellow-300 text-black'
                                 : 'bg-yellow-400/20 text-yellow-300 hover:bg-yellow-300 hover:text-black'
@@ -516,7 +547,7 @@ export default function Home() {
                   animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
                   exit={{ opacity: 0, x: 40, filter: 'blur(8px)' }}
                   transition={{ duration: 0.4 }}
-                  className="bg-gradient-to-br from-gray-900/80 to-gray-800 p-8 rounded-2xl border border-yellow-400/30 shadow-2xl"
+                  className="bg-gradient-to-br from-gray-900/80 to-gray-800 p-4 sm:p-6 lg:p-8 rounded-2xl border border-yellow-400/30 shadow-2xl"
                 >
                   <div className="flex flex-col gap-6">
                     <div className="flex flex-col gap-3">
@@ -581,7 +612,7 @@ export default function Home() {
     </section>
         </div>
 
-           <section className="container mx-auto py-10">
+           <section className="container mx-auto py-16">
         <motion.h2 
           className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12"
           initial={{ opacity: 0, y: 20 }}

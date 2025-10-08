@@ -360,24 +360,24 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.6 }}
               >
-                <Link 
-                  href="/project"  
+                <button
+                  onClick={() => document.getElementById('works')?.scrollIntoView({ behavior: 'smooth' })}  
                   className="px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-bold bg-yellow-400 text-black rounded-md hover:bg-yellow-500 transition-all duration-300 text-center block"
                 >
                   VIEW WORKS
-                </Link>
+                </button>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.7 }}
               >
-                <Link 
-                  href="/contact" 
+                <button
+                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })} 
                   className="px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-bold border-2 border-yellow-400 text-yellow-400 rounded-md hover:bg-yellow-400 hover:text-black transition-all duration-300 text-center block"
                 >
                   CONTACT ME
-                </Link>
+                </button>
               </motion.div>
             </div>
           </motion.div>
@@ -641,8 +641,12 @@ export default function Home() {
           </div>
         </div>
       </section>
-    <Works/>
-    <Contact/>
+    <div id="works">
+      <Works/>
+    </div>
+    <div id="contact">
+      <Contact/>
+    </div>
       </section>
 
       {/* Achievements Section */}
